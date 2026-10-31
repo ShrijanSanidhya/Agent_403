@@ -178,15 +178,23 @@ def _choose_file(urls: list[dict[str, object]]) -> dict[str, object]:
     ]
     if pure:
         return pure[0]
-    if wheels:
-        return wheels[0]
+    # A cp27 Windows wheel is not this package's Python 3 source. Prefer the sdist.
     for item in urls:
         if item.get("packagetype") != "sdist":
             continue
         filename = str(item.get("filename") or "")
         if filename.endswith((".tar.gz", ".tgz", ".zip")):
             return item
+    py3 = [item for item in wheels if _is_py3_wheel(str(item.get("filename") or ""))]
+    if py3:
+        return py3[0]
+    if wheels:
+        return wheels[0]
     raise DigestMismatchError("no usable wheel or sdist in the PyPI response")
+
+
+def _is_py3_wheel(filename: str) -> bool:
+    return "-cp3" in filename or "-py3" in filename
 
 
 def _describe(name: str, version: str, dest: Path, origin: str) -> DistSource:
@@ -248,13 +256,21 @@ def _sdist_packages(dest: Path) -> tuple[Path, list[str]]:
     if not found:
         return dest, []
     parents = {parent for parent, _name in found}
-    names: list[str] = []
-    for _parent, name in found:
-        if name not in names:
-            names.append(name)
     if len(parents) == 1:
-        return parents.pop(), names
-    return dest, names
+        return parents.pop(), _unique(name for _parent, name in found)
+    lib3 = [parent for parent in parents if parent.name == "lib3"]
+    if len(lib3) == 1:
+        parent = lib3[0]
+        return parent, _unique(name for found_parent, name in found if found_parent == parent)
+    return dest, _unique(name for _parent, name in found)
+
+
+def _unique(names) -> list[str]:
+    found: list[str] = []
+    for name in names:
+        if name not in found:
+            found.append(name)
+    return found
 
 
 def _requires_from_tree(dest: Path) -> list[str]:

@@ -11,9 +11,13 @@ from rich.console import Console
 
 from agent403 import __version__
 from agent403.analyzer import ScanResult, analyze
+from agent403.callgraph import Index, Root
+from agent403.llm import from_env
 from agent403.models import Verdict
-from agent403.net import OfflineError
+from agent403.net import HttpClient, OfflineError
+from agent403.pypi import fetch
 from agent403.report import dump_json, render_table, to_json
+from agent403.symbols import load_advisory, resolve_symbols
 from agent403.vex import dump_vex
 
 app = typer.Typer(no_args_is_help=True)
@@ -94,7 +98,6 @@ def scan(
     ] = None,
 ) -> None:
     """Scan a Python project for reachable vulnerable functions."""
-    del no_llm, refresh_symbols
     if not path.exists() or not path.is_dir():
         console.print(f"[red]Error:[/red] {path} is not a directory.")
         raise typer.Exit(code=2)
@@ -107,12 +110,108 @@ def scan(
             osv_dirs=osv_cache or [],
             symbol_files=symbols_cache or [],
             include_tests=include_tests,
+            use_llm=not no_llm,
+            refresh_symbols=refresh_symbols,
         )
     except (OfflineError, requests.RequestException, OSError) as exc:
         console.print(f"[red]Error:[/red] {exc}")
         raise typer.Exit(code=2) from None
     _emit(result, output_format, json_out, vex_out, verbose)
     raise typer.Exit(code=_exit_code(result, fail_on))
+
+
+@app.command()
+def symbols(
+    advisory_id: Annotated[str, typer.Argument(help="OSV advisory id, for example GHSA-...")],
+    package: Annotated[str, typer.Option("--package", help="Distribution as name==version.")],
+    refresh: Annotated[bool, typer.Option("--refresh", help="Ignore cached symbols.")] = False,
+    no_llm: Annotated[bool, typer.Option("--no-llm", help="Do not call a model.")] = False,
+    verbose: Annotated[
+        bool,
+        typer.Option("-v", "--verbose", help="Print the diff excerpt."),
+    ] = False,
+) -> None:
+    """Find the public symbols a user must call to trigger one advisory."""
+    if "==" not in package:
+        console.print("[red]Error:[/red] --package must look like name==version.")
+        raise typer.Exit(code=2)
+    name, version = package.split("==", 1)
+    http = HttpClient()
+    try:
+        advisory = load_advisory(advisory_id, name, version, http)
+        dist = fetch(name, version, offline=False, http=http)
+    except (OfflineError, requests.RequestException, OSError) as exc:
+        console.print(f"[red]Error:[/red] {exc}")
+        raise typer.Exit(code=2) from None
+    llm = None
+    if not no_llm:
+        llm, warning = from_env(True)
+        if warning:
+            console.print(f"[yellow]Warning:[/yellow] {warning}")
+    index = Index.build([Root(dist.root, "dep", list(dist.import_names))])
+    result = resolve_symbols(
+        advisory,
+        index,
+        dist,
+        http=http,
+        llm=llm,
+        offline=False,
+        refresh=refresh,
+    )
+    _print_symbols(result, verbose)
+
+
+def _print_symbols(result, verbose: bool) -> None:
+    provenance = result.provenance
+    _print_names("changed functions:", _joined(provenance, "changed", "context"))
+    _print_names("candidates:", _as_list(provenance.get("candidates")))
+    console.print("vulnerable symbols:")
+    for name in result.symbols:
+        console.print(f"  {name}{_because(provenance, name, 'vulnerable')}")
+    console.print("safe symbols:")
+    for name in result.safe_symbols:
+        console.print(f"  {name}{_because(provenance, name, 'safe')}")
+    _print_names("rejected:", result.rejected)
+    console.print(f"source: {result.source}")
+    console.print(f"confidence: {result.confidence}")
+    if not verbose:
+        return
+    _print_names("fix refs:", _as_list(provenance.get("fix_refs_used")))
+    _print_names("public API:", _as_list(provenance.get("public")))
+
+
+def _joined(provenance: dict[str, object], *keys: str) -> list[str]:
+    names: list[str] = []
+    for key in keys:
+        names.extend(_as_list(provenance.get(key)))
+    return names
+
+
+def _as_list(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [str(item) for item in value]
+
+
+def _because(provenance: dict[str, object], name: str, role: str) -> str:
+    raw = provenance.get("why")
+    if not isinstance(raw, list):
+        return ""
+    for item in raw:
+        if not isinstance(item, dict) or item.get("symbol") != name:
+            continue
+        if item.get("role") not in {role, None, ""}:
+            continue
+        why = item.get("why")
+        if why:
+            return f" — {why}"
+    return ""
+
+
+def _print_names(title: str, names: list[str]) -> None:
+    console.print(title)
+    for name in names:
+        console.print(f"  {name}")
 
 
 def _emit(

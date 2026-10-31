@@ -109,4 +109,11 @@ def _print_verbose(console: Console, result: ScanResult) -> None:
         for reason in finding.evidence.reasons:
             console.print(f"  {reason}")
         for symbol in finding.vulnerable_symbols:
-            console.print(f"  {symbol['symbol']} ({symbol['source']}, {symbol['confidence']})")
+            why = f" — {symbol['why']}" if symbol.get("why") else ""
+            source = f"{symbol['source']}, {symbol['confidence']}"
+            console.print(f"  {symbol['symbol']} ({source}){why}")
+        for item in finding.explanations:
+            if item.get("why"):
+                console.print(f"  {item.get('role', 'why')}: {item['symbol']} — {item['why']}")
+        for name in finding.rejected:
+            console.print(f"  rejected {name}")
