@@ -276,3 +276,32 @@ def test_src_layout_strips_the_prefix(tmp_path: Path) -> None:
     index = Index.build([Root(tmp_path, "app")])
     assert "pkg.mod" in index.modules
     assert index.modules["pkg.mod"].file == "src/pkg/mod.py"
+
+
+def test_function_inside_package_is_not_peeked(tmp_path: Path) -> None:
+    site = tmp_path / "site"
+    package = site / "fakelib"
+    package.mkdir(parents=True)
+    (package / "__init__.py").write_text(
+        "def vuln_func() -> int:\n"
+        "    return 1\n"
+        "\n"
+        "def safe_func() -> int:\n"
+        "    return vuln_func()\n",
+        encoding="utf-8",
+    )
+    app = tmp_path / "app"
+    app.mkdir()
+    (app / "main.py").write_text(
+        "import fakelib\n\ndef main() -> int:\n    return fakelib.safe_func()\n",
+        encoding="utf-8",
+    )
+    index = Index.build([Root(app, "app"), Root(site, "dep", ["fakelib"])])
+
+    def is_target(name: str) -> bool:
+        return name == "fakelib.vuln_func" or name.startswith("fakelib.vuln_func.")
+
+    def can_enter(name: str) -> bool:
+        return name != "fakelib" and not name.startswith("fakelib.")
+
+    assert find_path(index, ["main.main"], is_target, can_enter) is None

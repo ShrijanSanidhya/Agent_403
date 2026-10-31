@@ -30,3 +30,13 @@ jobs:
         run: |
           agent403 version
           agent403 --help
+          set +e
+          agent403 scan tests/fixtures/apps/direct_call --offline \
+            --site-packages tests/fixtures/site \
+            --osv-cache tests/fixtures/osv \
+            --symbols-cache tests/fixtures/symbols/symbols_cache.json \
+            --format json
+          status=$?
+          set -e
+          test "$status" -eq 1
+          python scripts/evaluate.py

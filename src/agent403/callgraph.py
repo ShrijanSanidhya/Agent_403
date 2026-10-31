@@ -178,9 +178,10 @@ def find_path(
     """Shortest path from any source to a target symbol.
 
     The first hop is the source function at its definition. Later hops use the
-    call site. A function just inside a package we must not explore is still
+    call site. A method just inside a package we must not explore is still
     checked for a direct call to the target, so Parser.unsafe() can reach
-    unsafe_parse without walking the rest of that package.
+    unsafe_parse. Plain functions are not entered: safe_func() calling
+    vuln_func() must not mark callers of safe_func as reachable.
     """
     queue: deque[str] = deque(sorted(sources))
     seen = set(queue)
@@ -210,11 +211,14 @@ def find_path(
                 parent[edge.dst] = (current, edge)
                 return rebuild(edge.dst)
             if not can_enter(edge.dst):
-                for inner in sorted(index.edges.get(edge.dst, []), key=edge_key):
-                    if is_target(inner.dst):
-                        parent[edge.dst] = (current, edge)
-                        parent[inner.dst] = (edge.dst, inner)
-                        return rebuild(inner.dst)
+                # Only methods. Peeking into safe_load() would flag it when it calls load().
+                symbol = index.symbols.get(edge.dst)
+                if symbol is not None and symbol.kind == "method":
+                    for inner in sorted(index.edges.get(edge.dst, []), key=edge_key):
+                        if is_target(inner.dst):
+                            parent[edge.dst] = (current, edge)
+                            parent[inner.dst] = (edge.dst, inner)
+                            return rebuild(inner.dst)
                 continue
             if edge.dst in seen or not index.edges.get(edge.dst):
                 continue
