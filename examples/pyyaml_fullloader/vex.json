@@ -1,0 +1,30 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/agent403/a1626a2a4d6e04d4fbd4bae20533b9073906a91801a7664a87524437d022483e",
+  "author": "agent403",
+  "timestamp": "2026-10-31T21:00:39.686721+00:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "GHSA-8q59-q68h-6hv4",
+        "aliases": [
+          "CVE-2020-14343",
+          "PYSEC-2021-142"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/pyyaml_fullloader",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyyaml@5.3.1"
+            }
+          ]
+        }
+      ],
+      "status": "affected",
+      "action_statement": "Upgrade pyyaml to 5.4 or later"
+    }
+  ]
+}

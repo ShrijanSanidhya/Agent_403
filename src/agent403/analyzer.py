@@ -274,9 +274,10 @@ def _judge(
     explanations = _explanations(resolved)
     imports = list(dist.import_names)
     intermediates = _import_names(_intermediates(advisory.package, sources), sources)
+    targets, via_subclass = _with_subclasses(index, names, imports)
 
     def is_target(name: str) -> bool:
-        return any(name == symbol or name.startswith(symbol + ".") for symbol in names)
+        return any(name == symbol or name.startswith(symbol + ".") for symbol in targets)
 
     def can_enter(name: str) -> bool:
         return not _inside(name, imports)
@@ -285,11 +286,15 @@ def _judge(
         path = _first_path(index, is_target, can_enter)
         if path is not None:
             shown = " -> ".join(hop.symbol for hop in path)
+            reasons = [f"call path found: {shown}"]
+            note = _subclass_note(path[-1].symbol, via_subclass)
+            if note:
+                reasons.append(note)
             return _make(
                 advisory,
                 Verdict.REACHABLE,
                 listed,
-                [f"call path found: {shown}"],
+                reasons,
                 paths=[path],
                 rejected=rejected,
                 explanations=explanations,
@@ -366,6 +371,34 @@ def _judge(
         rejected=rejected,
         explanations=explanations,
     )
+
+
+def _with_subclasses(
+    index: Index, names: list[str], imports: list[str]
+) -> tuple[list[str], dict[str, str]]:
+    """Add in-dist subclasses of a vulnerable class. They are match targets only."""
+    targets = list(names)
+    via: dict[str, str] = {}
+    for name in names:
+        symbol = index.symbols.get(name)
+        if symbol is None or symbol.kind != "class":
+            continue
+        for child in index.subclasses_of(name):
+            if child in names or not _inside(child, imports):
+                continue
+            if child not in targets:
+                targets.append(child)
+            via.setdefault(child, name)
+    return targets, via
+
+
+def _subclass_note(target: str, via: dict[str, str]) -> str | None:
+    matches = [child for child in via if target == child or target.startswith(child + ".")]
+    if not matches:
+        return None
+    child = max(matches, key=len)
+    base = via[child].rsplit(".", 1)[-1]
+    return f"{child} is a subclass of {base}"
 
 
 def _canonical(index: Index, resolved: VulnSymbols) -> list[str]:

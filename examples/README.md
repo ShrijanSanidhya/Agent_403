@@ -7,5 +7,6 @@ These scans were produced by `agent403` against the shipped symbol cache. `outpu
 | pyyaml_reachable | REACHABLE | `main.main` calls `config.load_config`, which calls `yaml.full_load` |
 | pyyaml_safe | NOT AFFECTED | the same loader calls `yaml.safe_load` |
 | pyyaml_dynamic | UNCERTAIN | `getattr(yaml, loader_name)` chooses the loader from argv |
+| pyyaml_fullloader | REACHABLE | `load_with_loader` calls `yaml.load` with `Loader=yaml.FullLoader` |
 | jinja2_sandbox | REACHABLE | `main.main` constructs `jinja2.sandbox.SandboxedEnvironment` |
 | jinja2_plain | NOT AFFECTED | a fixed `jinja2.Template` does not reach the recorded symbols |

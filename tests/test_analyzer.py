@@ -57,6 +57,80 @@ def test_unknown_symbols_follow_imports(tmp_path: Path) -> None:
     assert "never imported" in missing.findings[0].evidence.reasons[0]
 
 
+def test_subclass_of_a_vulnerable_class_is_reachable(tmp_path: Path) -> None:
+    site = tmp_path / "site"
+    package = site / "lib"
+    package.mkdir(parents=True)
+    (package / "__init__.py").write_text(
+        "class Base:\n    pass\n\n\nclass Child(Base):\n    pass\n",
+        encoding="utf-8",
+    )
+    dist_info = site / "lib-1.0.0.dist-info"
+    dist_info.mkdir()
+    (dist_info / "METADATA").write_text("Name: lib\nVersion: 1.0.0\n", encoding="utf-8")
+    (dist_info / "top_level.txt").write_text("lib\n", encoding="utf-8")
+    osv = tmp_path / "osv"
+    (osv / "vulns").mkdir(parents=True)
+    (osv / "index.json").write_text('{"lib==1.0.0": ["TEST-SUB"]}\n', encoding="utf-8")
+    (osv / "vulns" / "TEST-SUB.json").write_text(
+        json.dumps(
+            {
+                "id": "TEST-SUB",
+                "summary": "Base is vulnerable",
+                "details": "Calling a subclass of Base reaches the flaw.",
+                "aliases": [],
+                "affected": [
+                    {
+                        "package": {"ecosystem": "PyPI", "name": "lib"},
+                        "ranges": [
+                            {
+                                "type": "ECOSYSTEM",
+                                "events": [{"introduced": "0"}, {"fixed": "1.0.1"}],
+                            }
+                        ],
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    symbols = tmp_path / "symbols.json"
+    symbols.write_text(
+        json.dumps(
+            {
+                "TEST-SUB": {
+                    "package": "lib",
+                    "symbols": ["lib.Base"],
+                    "safe_symbols": [],
+                    "confidence": "high",
+                    "generated_by": "test",
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    app = tmp_path / "app"
+    app.mkdir()
+    (app / "requirements.txt").write_text("lib==1.0.0\n", encoding="utf-8")
+    (app / "main.py").write_text(
+        "import lib\n\n\ndef main() -> None:\n    lib.Child()\n",
+        encoding="utf-8",
+    )
+    result = analyze(
+        app,
+        offline=True,
+        site_dirs=(site,),
+        osv_dirs=(osv,),
+        symbol_files=(symbols,),
+        use_llm=False,
+    )
+    assert result.findings
+    finding = result.findings[0]
+    assert finding.verdict == Verdict.REACHABLE
+    assert "lib.Child is a subclass of Base" in finding.evidence.reasons
+    assert [row["symbol"] for row in finding.vulnerable_symbols] == ["lib.Base"]
+
+
 def test_fetch_failure_is_uncertain(monkeypatch: pytest.MonkeyPatch) -> None:
     def boom(*_args: object, **_kwargs: object) -> None:
         raise OfflineError("offline mode: vulnlib==1.0.0 is not available locally")
