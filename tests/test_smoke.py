@@ -35,7 +35,17 @@ def test_scan_missing_path() -> None:
 def test_scan_directory_not_implemented(tmp_path: Path) -> None:
     result = runner.invoke(app, ["scan", str(tmp_path)])
     assert result.exit_code == 2
-    assert "not implemented" in result.output
+    assert "Reachability analysis not implemented yet" in result.output
+
+
+def test_scan_offline_lists_pyyaml(tmp_path: Path) -> None:
+    project = tmp_path / "proj"
+    project.mkdir()
+    (project / "requirements.txt").write_text("pyyaml==5.3.1\n", encoding="utf-8")
+    result = runner.invoke(app, ["scan", str(project), "--offline"])
+    assert result.exit_code == 2
+    assert "CVE-2020-14343" in result.output
+    assert "Reachability analysis not implemented yet" in result.output
 
 
 def test_finding_to_dict_schema() -> None:

@@ -1,0 +1,18 @@
+{
+  "id": "TEST-0001",
+  "summary": "Unsafe parsing allows code execution",
+  "details": "Fake advisory used only by tests. vulnlib.parser.unsafe_parse is the vulnerable symbol.",
+  "aliases": ["CVE-0000-0001"],
+  "affected": [
+    {
+      "package": {"ecosystem": "PyPI", "name": "vulnlib"},
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [{"introduced": "0"}, {"fixed": "1.0.1"}]
+        }
+      ]
+    }
+  ],
+  "references": []
+}
