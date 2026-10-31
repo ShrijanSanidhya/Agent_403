@@ -78,6 +78,36 @@ def test_wheel_requires_and_top_level(tmp_path: Path, monkeypatch: pytest.Monkey
     assert (dist.root / "coolpkg").is_dir()
 
 
+def test_sdist_beats_a_python2_wheel(monkeypatch: pytest.MonkeyPatch) -> None:
+    archive = io.BytesIO()
+    with tarfile.open(fileobj=archive, mode="w:gz") as bundle:
+        _add_bytes(bundle, "PyYAML-5.3.1/lib/yaml/__init__.py", b"")
+        _add_bytes(bundle, "PyYAML-5.3.1/lib3/yaml/__init__.py", b"")
+    data = archive.getvalue()
+    project = {
+        "urls": [
+            {
+                "packagetype": "bdist_wheel",
+                "filename": "PyYAML-5.3.1-cp27-cp27m-win32.whl",
+                "url": "https://example.test/old.whl",
+                "digests": {"sha256": "ab" * 32},
+            },
+            {
+                "packagetype": "sdist",
+                "filename": "PyYAML-5.3.1.tar.gz",
+                "url": "https://example.test/src.tgz",
+                "digests": {"sha256": hashlib.sha256(data).hexdigest()},
+            },
+        ]
+    }
+    monkeypatch.setattr(HttpClient, "get_json", lambda self, url: project)
+    monkeypatch.setattr(HttpClient, "get_bytes", lambda self, url: data)
+    dist = fetch("pyyaml", "5.3.1", offline=False, sites=[])
+    assert dist.origin == "sdist"
+    assert dist.root.name == "lib3"
+    assert dist.import_names == ["yaml"]
+
+
 def test_sdist_lib3_layout(monkeypatch: pytest.MonkeyPatch) -> None:
     archive = io.BytesIO()
     with tarfile.open(fileobj=archive, mode="w:gz") as bundle:

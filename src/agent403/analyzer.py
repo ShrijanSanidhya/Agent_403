@@ -16,6 +16,7 @@ from agent403.callgraph import (
     find_path,
 )
 from agent403.deps import load_dependencies
+from agent403.llm import LLM, disabled_status, from_env
 from agent403.models import Advisory, Dependency, Evidence, Finding, PathHop, Verdict, VulnSymbols
 from agent403.net import HttpClient, OfflineError
 from agent403.osv import OsvClient
@@ -51,26 +52,42 @@ def analyze(
     symbol_files: tuple[Path, ...] | list[Path] = (),
     include_tests: bool = False,
     use_llm: bool = False,
+    refresh_symbols: bool = False,
 ) -> ScanResult:
-    """Scan a project. The model flag is accepted and ignored until a later PR."""
-    del use_llm
+    """Scan a project. Offline scans never call a model."""
     dependencies, warnings = load_dependencies(project, requirements)
-    client = OsvClient(
-        HttpClient(offline=offline),
-        offline=offline,
-        extra_dirs=_osv_dirs(osv_dirs),
-    )
+    http = HttpClient(offline=offline)
+    llm = None
+    if use_llm and not offline:
+        llm, llm_warning = from_env(True)
+        if llm_warning:
+            warnings.append(llm_warning)
+        status = llm.describe() if llm is not None else disabled_status(True)
+    else:
+        status = disabled_status(False)
+    client = OsvClient(http, offline=offline, extra_dirs=_osv_dirs(osv_dirs))
     advisories, osv_warnings = client.fetch_advisories(dependencies)
     warnings.extend(osv_warnings)
     sources, failures = _fetch_sources(dependencies, offline, site_dirs, warnings)
-    findings = _findings(project, advisories, sources, failures, symbol_files, include_tests)
+    findings = _findings(
+        project,
+        advisories,
+        sources,
+        failures,
+        symbol_files,
+        include_tests,
+        http,
+        llm,
+        offline,
+        refresh_symbols,
+    )
     return ScanResult(
         project=project,
         generated_at=datetime.now(timezone.utc).isoformat(),
         dependencies=dependencies,
         findings=findings,
         warnings=warnings,
-        llm={"enabled": False},
+        llm=status,
     )
 
 
@@ -121,6 +138,10 @@ def _findings(
     failures: dict[str, str],
     symbol_files: tuple[Path, ...] | list[Path],
     include_tests: bool,
+    http: HttpClient,
+    llm: LLM | None,
+    offline: bool,
+    refresh_symbols: bool,
 ) -> list[Finding]:
     grouped: dict[str, list[Advisory]] = {}
     for advisory in advisories:
@@ -132,7 +153,9 @@ def _findings(
         if dist is None:
             reason = failures.get(package, f"could not read {package}")
             for advisory in package_advisories:
-                findings.append(_unscanned(advisory, reason, symbol_files))
+                findings.append(
+                    _unscanned(advisory, reason, symbol_files, offline, refresh_symbols)
+                )
             continue
         index = indexes.get(package)
         if index is None:
@@ -140,7 +163,17 @@ def _findings(
             indexes[package] = index
         blocked = _other_failures(package, failures)
         for advisory in package_advisories:
-            finding = _judge(advisory, index, dist, sources, symbol_files)
+            finding = _judge(
+                advisory,
+                index,
+                dist,
+                sources,
+                symbol_files,
+                http,
+                llm,
+                offline,
+                refresh_symbols,
+            )
             if finding.verdict == Verdict.NOT_AFFECTED and blocked:
                 finding = _replace(finding, Verdict.UNCERTAIN, [blocked])
             findings.append(finding)
@@ -193,16 +226,52 @@ def _intermediates(package: str, sources: dict[str, DistSource]) -> list[str]:
     return sorted(found)
 
 
+def _entry_points(index: Index) -> list[str]:
+    """App module bodies, and app functions nothing else in the app calls."""
+    app = set(index.app_functions())
+    incoming: set[str] = set()
+    for src, edges in index.edges.items():
+        if src not in app:
+            continue
+        for edge in edges:
+            if edge.dst in app and edge.dst != src:
+                incoming.add(edge.dst)
+    return sorted(name for name in app if name.endswith(".<module>") or name not in incoming)
+
+
+def _first_path(index: Index, is_target, can_enter):
+    """Prefer a path from an entry point. Fall back to every app function."""
+    path = find_path(index, _entry_points(index), is_target, can_enter)
+    if path is not None:
+        return path
+    return find_path(index, index.app_functions(), is_target, can_enter)
+
+
 def _judge(
     advisory: Advisory,
     index: Index,
     dist: DistSource,
     sources: dict[str, DistSource],
     symbol_files: tuple[Path, ...] | list[Path],
+    http: HttpClient,
+    llm: LLM | None,
+    offline: bool,
+    refresh_symbols: bool,
 ) -> Finding:
-    resolved = resolve_symbols(advisory, symbol_files)
+    resolved = resolve_symbols(
+        advisory,
+        index,
+        dist,
+        http=http,
+        llm=llm,
+        offline=offline,
+        refresh=refresh_symbols,
+        extra_cache_files=symbol_files,
+    )
     names = _canonical(index, resolved)
     listed = _listed(names, resolved)
+    rejected = list(resolved.rejected)
+    explanations = _explanations(resolved)
     imports = list(dist.import_names)
     intermediates = _import_names(_intermediates(advisory.package, sources), sources)
 
@@ -213,7 +282,7 @@ def _judge(
         return not _inside(name, imports)
 
     if names:
-        path = find_path(index, index.app_functions(), is_target, can_enter)
+        path = _first_path(index, is_target, can_enter)
         if path is not None:
             shown = " -> ".join(hop.symbol for hop in path)
             return _make(
@@ -222,41 +291,81 @@ def _judge(
                 listed,
                 [f"call path found: {shown}"],
                 paths=[path],
+                rejected=rejected,
+                explanations=explanations,
             )
 
     referenced = _references(index, imports, intermediates)
     if resolved.source == "none":
         if referenced:
             reason = "vulnerable functions for this advisory are unknown"
-            return _make(advisory, Verdict.UNCERTAIN, listed, [reason])
+            return _make(
+                advisory,
+                Verdict.UNCERTAIN,
+                listed,
+                [reason],
+                rejected=rejected,
+                explanations=explanations,
+            )
         return _make(
             advisory,
             Verdict.NOT_AFFECTED,
             listed,
             ["package is never imported by the project"],
+            rejected=rejected,
+            explanations=explanations,
         )
 
     reached = _reachable(index, can_enter)
     dynamic = _dynamic(index, reached, imports)
     if dynamic:
         reasons = [f"dynamic {site.kind} at {site.file}:{site.line}" for site in dynamic]
-        return _make(advisory, Verdict.UNCERTAIN, listed, reasons, dynamic=dynamic)
+        return _make(
+            advisory,
+            Verdict.UNCERTAIN,
+            listed,
+            reasons,
+            dynamic=dynamic,
+            rejected=rejected,
+            explanations=explanations,
+        )
 
     unresolved = _unresolved(index, reached, names)
     if unresolved:
         reasons = [
             f"unresolved call {call.method_name} at {call.file}:{call.line}" for call in unresolved
         ]
-        return _make(advisory, Verdict.UNCERTAIN, listed, reasons)
+        return _make(
+            advisory,
+            Verdict.UNCERTAIN,
+            listed,
+            reasons,
+            rejected=rejected,
+            explanations=explanations,
+        )
 
     problems = _parse_and_truncation(index, imports, intermediates)
     if problems:
-        return _make(advisory, Verdict.UNCERTAIN, listed, problems)
+        return _make(
+            advisory,
+            Verdict.UNCERTAIN,
+            listed,
+            problems,
+            rejected=rejected,
+            explanations=explanations,
+        )
 
     reasons = [f"no call path from project code to {', '.join(names)}"]
     if not referenced:
         reasons.append("package is never imported by the project")
-    return _make(advisory, Verdict.NOT_AFFECTED, listed, reasons)
+    return _make(
+        advisory,
+        Verdict.NOT_AFFECTED,
+        listed,
+        reasons,
+        rejected=rejected,
+        explanations=explanations,
+    )
 
 
 def _canonical(index: Index, resolved: VulnSymbols) -> list[str]:
@@ -269,10 +378,32 @@ def _canonical(index: Index, resolved: VulnSymbols) -> list[str]:
 
 
 def _listed(names: list[str], resolved: VulnSymbols) -> list[dict[str, str]]:
-    return [
-        {"symbol": name, "source": resolved.source, "confidence": resolved.confidence}
-        for name in names
-    ]
+    reasons = _why_map(resolved)
+    rows: list[dict[str, str]] = []
+    for name in names:
+        row = {"symbol": name, "source": resolved.source, "confidence": resolved.confidence}
+        if name in reasons:
+            row["why"] = reasons[name]
+        rows.append(row)
+    return rows
+
+
+def _why_map(resolved: VulnSymbols) -> dict[str, str]:
+    raw = resolved.provenance.get("why")
+    found: dict[str, str] = {}
+    if not isinstance(raw, list):
+        return found
+    for item in raw:
+        if isinstance(item, dict) and isinstance(item.get("symbol"), str):
+            found[str(item["symbol"])] = str(item.get("why") or "")
+    return found
+
+
+def _explanations(resolved: VulnSymbols) -> list[dict[str, str]]:
+    raw = resolved.provenance.get("why")
+    if not isinstance(raw, list):
+        return []
+    return [dict(item) for item in raw if isinstance(item, dict)]
 
 
 def _import_names(packages: list[str], sources: dict[str, DistSource]) -> list[str]:
@@ -389,10 +520,24 @@ def _unscanned(
     advisory: Advisory,
     reason: str,
     symbol_files: tuple[Path, ...] | list[Path],
+    offline: bool,
+    refresh_symbols: bool,
 ) -> Finding:
-    resolved = resolve_symbols(advisory, symbol_files)
+    resolved = resolve_symbols(
+        advisory,
+        offline=offline,
+        refresh=refresh_symbols,
+        extra_cache_files=symbol_files,
+    )
     listed = _listed(resolved.symbols, resolved)
-    return _make(advisory, Verdict.UNCERTAIN, listed, [reason])
+    return _make(
+        advisory,
+        Verdict.UNCERTAIN,
+        listed,
+        [reason],
+        rejected=resolved.rejected,
+        explanations=_explanations(resolved),
+    )
 
 
 def _make(
@@ -402,6 +547,8 @@ def _make(
     reasons: list[str],
     paths: list[list[PathHop]] | None = None,
     dynamic: list[DynamicSite] | None = None,
+    rejected: list[str] | None = None,
+    explanations: list[dict[str, str]] | None = None,
 ) -> Finding:
     sites = [
         {
@@ -420,6 +567,8 @@ def _make(
         vulnerable_symbols=symbols,
         evidence=Evidence(paths=list(paths or []), dynamic_sites=sites, reasons=list(reasons)),
         vex_status=_VEX[verdict],
+        rejected=list(rejected or []),
+        explanations=list(explanations or []),
     )
 
 
@@ -434,4 +583,6 @@ def _replace(finding: Finding, verdict: Verdict, reasons: list[str]) -> Finding:
             reasons=reasons,
         ),
         vex_status=_VEX[verdict],
+        rejected=list(finding.rejected),
+        explanations=list(finding.explanations),
     )

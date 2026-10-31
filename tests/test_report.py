@@ -33,7 +33,8 @@ def test_json_schema_and_summary() -> None:
         "findings",
         "summary",
     }
-    assert data["llm"] == {"enabled": False}
+    assert data["llm"]["enabled"] is False
+    assert data["llm"]["available"] is False
     assert data["tool"]["name"] == "agent403"
     assert data["summary"] == {"reachable": 1, "not_affected": 0, "uncertain": 0}
     finding = data["findings"][0]

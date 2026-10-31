@@ -1,6 +1,6 @@
 """Shared data types for a scan."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 
 
@@ -71,6 +71,8 @@ class Finding:
     vulnerable_symbols: list[dict[str, str]]
     evidence: Evidence
     vex_status: str
+    rejected: list[str] = field(default_factory=list)
+    explanations: list[dict[str, str]] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, object]:
         return {

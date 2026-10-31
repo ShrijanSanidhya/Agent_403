@@ -37,6 +37,13 @@ def test_fixture_apps_match_expected() -> None:
             assert finding.evidence.paths, app.name
             assert finding.evidence.reasons, app.name
             assert finding.vex_status == "affected"
+        if app.name == "indirect_chain":
+            hops = [hop.symbol for hop in finding.evidence.paths[0]]
+            assert hops == [
+                "main.main",
+                "helpers.process",
+                "vulnlib.parser.unsafe_parse",
+            ]
 
 
 def test_unknown_symbols_follow_imports(tmp_path: Path) -> None:
