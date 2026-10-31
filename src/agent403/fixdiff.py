@@ -54,11 +54,35 @@ def github_diff_urls(fix_refs: list[str]) -> list[str]:
 
 
 def fetch_diff(http: HttpClient, url: str) -> str:
-    """Download a diff and cut it at 400 KB."""
-    text = http.get_text(url)
+    """Download a diff and cut it at 400 KB.
+
+    A GitHub pull diff that returns 403 or 429 is retried through the public
+    patch-diff mirror. Commit diffs are left to the caller.
+    """
+    text = _download_diff(http, url)
     if len(text) > _MAX_DIFF:
         return text[:_MAX_DIFF]
     return text
+
+
+def _download_diff(http: HttpClient, url: str) -> str:
+    try:
+        return http.get_text(url)
+    except requests.HTTPError as exc:
+        status = exc.response.status_code if exc.response is not None else None
+        mirror = _pull_mirror(url) if status in {403, 429} else None
+        if mirror is None:
+            raise
+        return http.get_text(mirror)
+
+
+def _pull_mirror(url: str) -> str | None:
+    base = url.split("?", 1)[0].split("#", 1)[0]
+    match = _PULL.search(base)
+    if match is None:
+        return None
+    owner, repo, number = match.group(1), match.group(2), match.group(3)
+    return f"https://patch-diff.githubusercontent.com/raw/{owner}/{repo}/pull/{number}.diff"
 
 
 def parse_unified_diff(text: str) -> list[FileChange]:

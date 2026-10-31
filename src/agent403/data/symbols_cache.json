@@ -156,5 +156,2630 @@
       "https://github.com/yaml/pyyaml/commit/a001f2782501ad2d24986959f0239a354675f9dc.diff"
     ],
     "rejected": []
+  },
+  "GHSA-gc5v-m9x4-r6x2": {
+    "package": "requests",
+    "symbols": [
+      "requests.utils.extract_zipped_paths"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:43:24.388491+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "8b1413b680901954dbd20d5902b977fba1600023cdb9589d53e5fd5a7462b87e",
+    "fix_refs_used": [
+      "https://github.com/psf/requests/commit/66d21cb07bd6255b1280291c4fafb71803cdb3b7.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.32.5"
+  },
+  "GHSA-9hjg-9r4m-mvj7": {
+    "package": "requests",
+    "symbols": [
+      "requests.utils.get_netrc_auth"
+    ],
+    "safe_symbols": [
+      "requests.sessions.Session"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:43:40.448710+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "0eb970f0c707b107dff8b191af540c4436d8207a5dbbe8499f635cee1301050c",
+    "fix_refs_used": [
+      "https://github.com/psf/requests/pull/6965.diff",
+      "https://github.com/psf/requests/commit/96ba401c1296ab1dda74a2365ef36d88f7d144ef.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.32.3"
+  },
+  "GHSA-9wx4-h78v-vm56": {
+    "package": "requests",
+    "symbols": [
+      "requests.adapters.BaseAdapter",
+      "requests.adapters.HTTPAdapter",
+      "requests.api.request"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:44:05.116214+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "0c02edd25a246b22de6695a0f703483a664358520bcbb4a8bd34f337cebc2d73",
+    "fix_refs_used": [
+      "https://github.com/psf/requests/pull/6655.diff",
+      "https://github.com/psf/requests/commit/a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.31.0"
+  },
+  "GHSA-j8r2-6x86-q33q": {
+    "package": "requests",
+    "symbols": [
+      "requests.api.get",
+      "requests.api.post",
+      "requests.api.put",
+      "requests.api.patch",
+      "requests.api.delete",
+      "requests.api.head",
+      "requests.api.options",
+      "requests.api.request",
+      "requests.sessions.Session.get",
+      "requests.sessions.Session.post",
+      "requests.sessions.Session.put",
+      "requests.sessions.Session.patch",
+      "requests.sessions.Session.delete",
+      "requests.sessions.Session.head",
+      "requests.sessions.Session.options",
+      "requests.sessions.Session.request"
+    ],
+    "safe_symbols": [
+      "requests.api.get",
+      "requests.api.post",
+      "requests.api.put",
+      "requests.api.patch",
+      "requests.api.delete",
+      "requests.api.head",
+      "requests.api.options",
+      "requests.api.request",
+      "requests.sessions.Session.get",
+      "requests.sessions.Session.post",
+      "requests.sessions.Session.put",
+      "requests.sessions.Session.patch",
+      "requests.sessions.Session.delete",
+      "requests.sessions.Session.head",
+      "requests.sessions.Session.options",
+      "requests.sessions.Session.request"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:45:36.533645+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "14927ea0a4b9ff7ae70c0ea2b9565e4cbb1bfc8cf9f45b112f6e31dd62902c77",
+    "fix_refs_used": [
+      "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.30.0"
+  },
+  "GHSA-pg2w-x9wp-vw92": {
+    "package": "requests",
+    "symbols": [
+      "requests.sessions.Session",
+      "requests.sessions.SessionRedirectMixin"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:45:53.128460+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "739e0321b0fa8413c35850d47277d1df7e1703489459fe4a6819b8cd41bb1005",
+    "fix_refs_used": [
+      "https://github.com/kennethreitz/requests/commit/3bd8afbff29e50b38f889b2f688785a669b9aafc.diff",
+      "https://github.com/psf/requests/commit/3bd8afbff29e50b38f889b2f688785a669b9aafc.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.5.3"
+  },
+  "GHSA-x84v-xcm2-53pg": {
+    "package": "requests",
+    "symbols": [
+      "requests.api.get",
+      "requests.api.post",
+      "requests.api.request"
+    ],
+    "safe_symbols": [
+      "requests.api.get",
+      "requests.api.post",
+      "requests.api.request"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:46:31.136848+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "81e198833467cf8c9c64bf0307c14de91d3971dbfde3f10389c207764758747d",
+    "fix_refs_used": [
+      "https://github.com/requests/requests/pull/4718.diff",
+      "https://github.com/requests/requests/commit/c45d7c49ea75133e52ab22a8e9e13173938e36ff.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.19.1"
+  },
+  "GHSA-cfj3-7x9c-4p3h": {
+    "package": "requests",
+    "symbols": [
+      "requests.api.request"
+    ],
+    "safe_symbols": [
+      "requests.api.get",
+      "requests.api.post"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:46:49.079946+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "ee48cc0eb67c9bc7f195dbc06bf4d5699131e7e217e0b85758c19cb2c069e503",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "2.2.1"
+  },
+  "GHSA-652x-xj99-gmcc": {
+    "package": "requests",
+    "symbols": [
+      "requests.api.request"
+    ],
+    "safe_symbols": [
+      "requests.api.get",
+      "requests.api.post"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:47:06.391410+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "73a5a5650c89d66e622977ca73d6c57f3d742ecdd4b263a1fc5b0ef2145ceb2a",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "2.2.1"
+  },
+  "GHSA-gh4c-6fx4-qh6g": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.response.DeflateDecoder",
+      "urllib3.response.HTTPResponse"
+    ],
+    "safe_symbols": [
+      "urllib3.connectionpool.HTTPConnectionPool",
+      "urllib3.connectionpool.HTTPSConnectionPool"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:47:42.307609+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "d3bcb59b6fce9cb518663ca17357c705f915ad6db24fa0bfef159adc09648a67",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/ea2ad7b21a80da3632f80016526a18864586077f.diff"
+    ],
+    "rejected": [
+      "urllib3.HTTPConnection",
+      "urllib3.HTTPSConnection"
+    ],
+    "indexed_version": "2.7.0"
+  },
+  "GHSA-vxq7-64xx-v4gw": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.response.HTTPResponse.read_chunked",
+      "urllib3.response.HTTPResponse.stream"
+    ],
+    "safe_symbols": [
+      "urllib3.response.HTTPResponse.read"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:48:16.512286+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "12a3f0914152471e6fb94a46d74cfbc21077af535d6761c5bcf8b6b456698998",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/cd770b059b543be29298ea5c52afb0b1b090f5ed.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.7.0"
+  },
+  "GHSA-8988-9cw3-xx77": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.connection.HTTPConnection",
+      "urllib3.connection.HTTPSConnection",
+      "urllib3.contrib.socks.SOCKSConnection",
+      "urllib3.contrib.socks.SOCKSHTTPSConnection",
+      "urllib3.contrib.socks.SOCKSProxyManager",
+      "urllib3.poolmanager.ProxyManager"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:48:56.551787+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "b1b4e6911c27dc0df75ab4f6b1bbadd1b68a9aa5ce530bb658367b85fd8d9a41",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/pull/5093.diff",
+      "https://github.com/urllib3/urllib3/commit/07408cec79d1856d81bb42c74a904a24fdb9e465.diff",
+      "https://github.com/urllib3/urllib3/commit/b6447295fff7b38fdffc67e0df9712d60cef3cc3.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.7.0"
+  },
+  "GHSA-38jv-5279-wg99": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.connection.HTTPConnection",
+      "urllib3.connection.HTTPSConnection",
+      "urllib3.connectionpool.HTTPConnectionPool",
+      "urllib3.connectionpool.HTTPSConnectionPool",
+      "urllib3.contrib.emscripten.connection.EmscriptenHTTPConnection",
+      "urllib3.contrib.emscripten.connection.EmscriptenHTTPSConnection",
+      "urllib3.contrib.emscripten.response.EmscriptenHttpResponseWrapper"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:49:36.366593+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "a996cdbfae5dcac2ae70aa0abe61aeafc24511d68180425ea6041656585e9074",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/8864ac407bba8607950025e0979c4c69bc7abc7b.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.6.2"
+  },
+  "GHSA-2xpw-w6gg-jr37": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.response.HTTPResponse.read_chunked",
+      "urllib3.response.HTTPResponse.read",
+      "urllib3.response.HTTPResponse.read1"
+    ],
+    "safe_symbols": [
+      "urllib3.response.HTTPResponse.stream"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:52:16.626103+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "51065857c93aab5b9d3662dfa56fc50d4f69f52ede75ea229fab8d7285c38f7c",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/c19571de34c47de3a766541b041637ba5f716ed7.diff",
+      "https://github.com/urllib3/urllib3/commit/d0fde3672e4a4093f7587858dccfc298eb66e46c.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.5.0"
+  },
+  "GHSA-gm62-xv2j-4w53": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.response.MultiDecoder"
+    ],
+    "safe_symbols": [
+      "urllib3.response.HTTPResponse"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:53:29.834914+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "6d57f75e11ce8bf141259fdca80ce2017b032495cdf12c219c573b83e66c0ae2",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/24d7b67eac89f94e11003424bcf0d8f7b72222a8.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.5.0"
+  },
+  "GHSA-48p4-8xcf-vxj5": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.contrib.emscripten.fetch.send_jspi_request",
+      "urllib3.contrib.emscripten.fetch.send_request",
+      "urllib3.contrib.emscripten.fetch.send_streaming_request"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:54:23.747588+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "f77226e75bbf62f53b5626b7520ac59f2b26dd27105f7687e18cfbdf71876f9a",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/7eb4a2aafe49a279c29b6d1f0ed0f42e9736194f.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.4.0"
+  },
+  "GHSA-pq67-6m6q-mj2v": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.poolmanager.PoolManager",
+      "urllib3.poolmanager.ProxyManager"
+    ],
+    "safe_symbols": [
+      "urllib3.request"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:55:04.831861+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "06137e8428bf3a6f815e53e2eea6a047d471130c3141ba401afd278bee7570d3",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.4.0"
+  },
+  "GHSA-34jh-p97f-mpxf": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.contrib.socks.SOCKSProxyManager",
+      "urllib3.exceptions.HeaderParsingError",
+      "urllib3.exceptions.InsecureRequestWarning",
+      "urllib3.exceptions.InvalidHeader",
+      "urllib3.exceptions.ProxyError",
+      "urllib3.exceptions.ProxySchemeUnknown",
+      "urllib3.exceptions.ProxySchemeUnsupported",
+      "urllib3.exceptions.RequestError"
+    ],
+    "safe_symbols": [
+      "urllib3.connectionpool.HTTPConnectionPool",
+      "urllib3.contrib.appengine.AppEngineManager",
+      "urllib3.poolmanager.PoolManager",
+      "urllib3.util.retry.Retry"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:56:00.515232+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "da2d7e79b5f8d69b53322002d4a8db9de985bcd1d1f0bff53167daba9475fa2f",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/40b6d1605814dd1db0a46e202d6e56f2e4c9a468.diff",
+      "https://github.com/urllib3/urllib3/commit/accff72ecc2f6cf5a76d9570198a93ac7c90270e.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "1.26.18"
+  },
+  "GHSA-g4mx-q9vg-27p4": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.connectionpool.HTTPConnectionPool",
+      "urllib3.connectionpool.HTTPSConnectionPool",
+      "urllib3.poolmanager.PoolManager",
+      "urllib3.poolmanager.ProxyManager"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:56:41.381378+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "219c4a271762714a0d283936c805dffa5fb866508bc17c2b0a7c46a7beb41133",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/4e50fbc5db74e32cabd5ccc1ab81fc103adfe0b3.diff",
+      "https://github.com/urllib3/urllib3/commit/4e98d57809dacab1cbe625fddeec1a290c478ea9.diff",
+      "https://github.com/urllib3/urllib3/commit/b594c5ceaca38e1ac215f916538fb128e3526a36.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "1.26.17"
+  },
+  "GHSA-gwvm-45gx-3cf8": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.exceptions.HeaderParsingError",
+      "urllib3.exceptions.InvalidHeader"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:57:08.788403+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "053e094a63a93192973be631072b33aa9942fa81fd1cd8b208cc208cb81a8c87",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/adb358f8e06865406d1f05e581a16cbea2136fbc.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "1.24.1"
+  },
+  "GHSA-v845-jxx5-vc9f": {
+    "package": "urllib3",
+    "symbols": [
+      "urllib3.connection.HTTPConnection",
+      "urllib3.connection.HTTPSConnection",
+      "urllib3.connectionpool.HTTPConnectionPool",
+      "urllib3.connectionpool.HTTPSConnectionPool",
+      "urllib3.exceptions.HTTPError",
+      "urllib3.exceptions.HTTPWarning",
+      "urllib3.exceptions.HeaderParsingError",
+      "urllib3.exceptions.InvalidHeader"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:57:57.129496+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "f8796817f92a34bbfd114520eb15a8cfe5e2871b724e65a8b1d10439d01d8bf6",
+    "fix_refs_used": [
+      "https://github.com/urllib3/urllib3/commit/01220354d389cd05474713f8c982d05c9b17aafb.diff",
+      "https://github.com/urllib3/urllib3/commit/644124ecd0b6e417c527191f866daa05a5a2056d.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "1.26.16"
+  },
+  "GHSA-68rp-wp8r-4726": {
+    "package": "flask",
+    "symbols": [
+      "flask.sessions.NullSession",
+      "flask.sessions.SecureCookieSession",
+      "flask.sessions.SecureCookieSessionInterface",
+      "flask.sessions.SessionInterface",
+      "flask.sessions.SessionMixin"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:58:24.736131+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "eaea899157b5941c7b9cc077cc386e7f6866054140f214ea036a91439604f5e9",
+    "fix_refs_used": [
+      "https://github.com/pallets/flask/commit/089cb86dd22bff589a4eafb7ab8e42dc357623b4.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.1.2"
+  },
+  "GHSA-4grg-w6v8-c28g": {
+    "package": "flask",
+    "symbols": [
+      "flask.sessions.SecureCookieSessionInterface.get_signing_serializer"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:58:42.088317+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "e52943c880452c0990bda4d8bae5331c57da3945bedde03befdb4bc6ec5e295c",
+    "fix_refs_used": [
+      "https://github.com/pallets/flask/commit/73d6504063bfa00666a92b07a28aaf906c532f09.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.1.0"
+  },
+  "GHSA-m2qf-hxjv-5gpq": {
+    "package": "flask",
+    "symbols": [
+      "flask.sessions.SecureCookieSessionInterface",
+      "flask.sessions.SessionInterface"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:59:08.936152+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "78f9afbd31cfd70221103a2ba21a7f7ed27551c55aaabf88ac8cc51b6ddc13f7",
+    "fix_refs_used": [
+      "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b.diff",
+      "https://github.com/pallets/flask/commit/afd63b16170b7c047f5758eb910c416511e9c965.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.2.4"
+  },
+  "GHSA-562c-5r94-xh97": {
+    "package": "flask",
+    "symbols": [
+      "flask.json.JSONDecoder",
+      "flask.json.JSONEncoder",
+      "flask.sessions.TaggedJSONSerializer",
+      "flask.wrappers.Request.get_json",
+      "flask.json.loads"
+    ],
+    "safe_symbols": [
+      "flask.json.dumps",
+      "flask.json.jsonify",
+      "flask.json.load"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:59:43.002216+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "11e8c20115e558282f1e37e8d1f77d94ddaf3cd102a2c5e86edfde9304ac9935",
+    "fix_refs_used": [
+      "https://github.com/pallets/flask/pull/2691.diff",
+      "https://github.com/pallets/flask/commit/b178e89e4456e777b1a7ac6d7199052d0dfdbbbe.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "0.12.2"
+  },
+  "GHSA-5wv5-4vpf-pj6m": {
+    "package": "flask",
+    "symbols": [
+      "flask.debughelpers.UnexpectedUnicodeError",
+      "flask.json.JSONDecoder",
+      "flask.json.JSONEncoder"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T21:59:56.837241+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "9825c56e84449c9e93c29019ee022eed9da9a37a00fc7df7054b5bdb9129c1bc",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "0.12.5"
+  },
+  "GHSA-g6x2-hccm-hh4m": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.security.safe_join",
+      "werkzeug.utils.send_from_directory"
+    ],
+    "safe_symbols": [
+      "werkzeug.security.generate_password_hash",
+      "werkzeug.security.check_password_hash"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:00:22.566021+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "d63a54e7de9765a3ddcb6775d9701202d5f96a759a74cee3b006b65c8db9ba69",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/pull/3309.diff",
+      "https://github.com/pallets/werkzeug/commit/8d77320bcdf3a34941ec06dcf16b03c065cd21b6.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.1.8"
+  },
+  "GHSA-29vq-49wr-vm6x": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.security.safe_join"
+    ],
+    "safe_symbols": [
+      "werkzeug.utils.send_from_directory"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:00:42.552525+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "fa07ee445a4d7a418ac91368554e8049f81f74051e03f288794ac143cb45bcd4",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/f407712fdc60a09c2b3f4fe7db557703e5d9338d.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.1.5"
+  },
+  "GHSA-87hc-h4r5-73f7": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.security.safe_join"
+    ],
+    "safe_symbols": [
+      "werkzeug.utils.send_from_directory"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:01:02.778100+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "ffd5ed50435174a78ad350c8ad03bd7612738a4cd0cc57e4e4168af143d3c361",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/7ae1d254e04a0c33e241ac1cca4783ce6c875ca3.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.1.4"
+  },
+  "GHSA-hgf8-39gv-g3f2": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.utils.send_from_directory"
+    ],
+    "safe_symbols": [
+      "werkzeug.utils.send_from_directory"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:01:27.310239+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "8df7ad1a35a1aae67b61733195213a4c197a69d547e4cae7b2506b9d8f6a7d55",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/4b833376a45c323a189cd11d2362bcffdb1c0c13.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.1.3"
+  },
+  "GHSA-q34m-jh98-gwm2": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.formparser.FormDataParser",
+      "werkzeug.sansio.multipart.MultipartDecoder",
+      "werkzeug.formparser.MultiPartParser"
+    ],
+    "safe_symbols": [
+      "werkzeug.exceptions.RequestEntityTooLarge"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:01:59.289154+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "41d089710cb6a04ba4f6afed0f52ef447ae28064d0c8424cc064e137fccf3dba",
+    "fix_refs_used": [
+      "https://github.com/pallets/quart/commit/5e78c4169b8eb66b91ead3e62d44721b9e1644ee.diff",
+      "https://github.com/pallets/quart/commit/abb04a512496206de279225340ed022852fbf51f.diff",
+      "https://github.com/pallets/werkzeug/commit/50cfeebcb0727e18cc52ffbeb125f4a66551179b.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.0.5"
+  },
+  "GHSA-f9vj-2wh5-fj8j": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.security.safe_join"
+    ],
+    "safe_symbols": [
+      "werkzeug.security.safe_join"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:02:18.375644+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "ab6af22a00bc2c6a2770f2322aafe7ec58f05ee7f2766362dbd07b2aec0091fb",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/2767bcb10a7dd1c297d812cc5e6d11a474c1f092.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.0.5"
+  },
+  "GHSA-2g68-c3qc-8985": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.debug.DebuggedApplication",
+      "werkzeug.serving.run_simple"
+    ],
+    "safe_symbols": [
+      "werkzeug.sansio.utils.host_is_trusted"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:02:49.660810+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "a1ce1f5086cc2b785e6d5b2adcf89f27af75bc21c56879e209c9bafc59d6f1ad",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/3386395b24c7371db11a5b8eaac0c91da5362692.diff"
+    ],
+    "rejected": [
+      "werkzeug.debug.DebuggedApplication.trusted_hosts"
+    ],
+    "indexed_version": "3.0.2"
+  },
+  "GHSA-hrfv-mqp8-q5rw": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.formparser.FormDataParser",
+      "werkzeug.formparser.MultiPartParser",
+      "werkzeug.sansio.multipart.Data",
+      "werkzeug.sansio.multipart.Epilogue",
+      "werkzeug.sansio.multipart.Event",
+      "werkzeug.sansio.multipart.Field",
+      "werkzeug.sansio.multipart.File",
+      "werkzeug.sansio.multipart.MultipartDecoder",
+      "werkzeug.sansio.multipart.MultipartEncoder",
+      "werkzeug.sansio.multipart.NeedData",
+      "werkzeug.sansio.multipart.Preamble",
+      "werkzeug.sansio.multipart.State"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:03:49.382108+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "9773d0e1512bac0b21254cc4419cd87384d329cb5b41ec09c6c621841f5eb475",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/b1916c0c083e0be1c9d887ee2f3d696922bfc5c1.diff",
+      "https://github.com/pallets/werkzeug/commit/cbb446fdcada7685fce936ded01b76c08dbd6eb5.diff",
+      "https://github.com/pallets/werkzeug/commit/f2300208d5e2a5076cbbb4c2aad71096fd040ef9.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.3.7"
+  },
+  "GHSA-px8h-6qxv-m22q": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.http.parse_cookie",
+      "werkzeug.sansio.http.parse_cookie"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:04:09.989188+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "43c347363842bccb85ce734b690e084fc1ba003a94bad0538f144b4636ef9886",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/cf275f42acad1b5950c50ffe8ef58fe62cdce028.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.2.2"
+  },
+  "GHSA-xg9f-g7g7-2323": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.formparser.FormDataParser",
+      "werkzeug.formparser.MultiPartParser",
+      "werkzeug.sansio.multipart.MultipartDecoder",
+      "werkzeug.sansio.multipart.MultipartEncoder",
+      "werkzeug.wrappers.request.Request"
+    ],
+    "safe_symbols": [
+      "werkzeug.exceptions.RequestEntityTooLarge"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:04:46.888890+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "c16c1bddbc9fc650db81e052f5d111977a8f448723644ead39c86804f4a46344",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/517cac5a804e8c4dc4ed038bb20dacd038e7a9f1.diff"
+    ],
+    "rejected": [
+      "werkzeug.wrappers.request.Request.max_form_parts"
+    ],
+    "indexed_version": "2.2.2"
+  },
+  "PYSEC-2022-203": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.http.parse_list_header"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:04:58.998185+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "3da5aadf3144939f6ecdfd0632e900df2e79d9e19c8be66edf4a947375482ab3",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/commit/9a3a981d70d2e9ec3344b5192f86fcaf3210cd85.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.1.0"
+  },
+  "GHSA-h2fp-xgx6-xh6f": {
+    "package": "werkzeug",
+    "symbols": [
+      "werkzeug.debug.tbtools.Traceback.render_full"
+    ],
+    "safe_symbols": [
+      "werkzeug.debug.DebuggedApplication"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:05:17.605292+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "871febfbf2b8a2133deb57cd2af0b50885e0eb09dc68abd05547429b9aa08b53",
+    "fix_refs_used": [
+      "https://github.com/pallets/werkzeug/pull/1001.diff",
+      "https://github.com/pallets/werkzeug/commit/1034edc7f901dd645ec6e462754111b39002bd65.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "0.11.10"
+  },
+  "GHSA-q238-5cxm-5c9h": {
+    "package": "django",
+    "symbols": [
+      "django.contrib.gis.db.models.fields.GeometryField",
+      "django.contrib.gis.geos.geometry.GEOSGeometry",
+      "django.contrib.gis.geos.io.WKBReader",
+      "django.contrib.gis.geos.io.WKTReader"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:06:02.251710+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "5263b5b8fb32dcfddca51e79545e1c1fa22938056b53ddbe92798b8665257289",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/1eafa1a80f1363283f89208ba4499ed54e35f085.diff",
+      "https://github.com/django/django/commit/4353dfb56f8ba3a6fccc4bdd7f2ef2fbee3aa638.diff",
+      "https://github.com/django/django/commit/62ef9d40cf4ea75f16518436b44b8ab2515340df.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.16"
+  },
+  "GHSA-wvqv-fj8w-qmhm": {
+    "package": "django",
+    "symbols": [
+      "django.contrib.gis.db.models.fields.BaseSpatialField.get_raster_prep_value",
+      "django.contrib.gis.gdal.raster.source.GDALRaster.__init__"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:06:32.257781+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "6e5cda62cb187ca02a6b052e312b8d8c257d6bafefd3e03a264eef20cb4bbfe5",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/115ffd0463a765ab1cc93de18e94b5459b8a300e.diff",
+      "https://github.com/django/django/commit/208f80cb682868b584ed0a78f23e4ba6304212aa.diff",
+      "https://github.com/django/django/commit/39b3e2d0c743a338def6c473086ebc06865e86b6.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.16"
+  },
+  "GHSA-3h9f-r86x-qvjx": {
+    "package": "django",
+    "symbols": [
+      "django.contrib.admindocs.middleware.XViewMiddleware",
+      "django.contrib.auth.middleware.AuthenticationMiddleware",
+      "django.contrib.auth.middleware.LoginRequiredMiddleware",
+      "django.contrib.auth.middleware.PersistentRemoteUserMiddleware",
+      "django.contrib.auth.middleware.RemoteUserMiddleware",
+      "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
+      "django.contrib.messages.middleware.MessageMiddleware",
+      "django.contrib.redirects.middleware.RedirectFallbackMiddleware"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:07:22.851115+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "99fbcc0104e5f9405572daf3b7146c5cebc38bc51adb56af8686afb48a6561e8",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/64f9a2b2283fde3ec69fb0dfe441cf0f6f411ba3.diff",
+      "https://github.com/django/django/commit/6e365f8d01f2ba0bbd90968d76a42600fb8bc4b1.diff",
+      "https://github.com/django/django/commit/721685aa7799cc9327bd202cd1f70bd012ca95a7.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.15"
+  },
+  "GHSA-8qcx-xf44-272x": {
+    "package": "django",
+    "symbols": [
+      "django.core.validators.DomainNameValidator",
+      "django.core.validators.ProhibitNullCharactersValidator"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:07:53.968489+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "d81513c19c89b860536d4be8587de25f750e59a218f335a3d118c9ef6f6616ea",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/3a720d0d8bf2529253b98968f10ca73daf6d693c.diff",
+      "https://github.com/django/django/commit/a5de13f1491f1dbf2bb0ad9b91570524ebbc8acd.diff",
+      "https://github.com/django/django/commit/d5d60ed0323cddaa0ce0237a26a3d49ac21ee05e.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.15"
+  },
+  "GHSA-crhf-3pfg-w68w": {
+    "package": "django",
+    "symbols": [
+      "django.contrib.gis.gdal.raster.source.GDALRaster",
+      "django.contrib.gis.gdal.raster.source.TransformPoint"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:08:20.055544+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "cd2d7c8a5d67056b6e52276ddd53aa44d07f3fab2fdbeb21cfaa98e964f7f62e",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/38dfbd27d7d4f4e6eaa087d7a90f2613fbf55b3a.diff",
+      "https://github.com/django/django/commit/6c66eb8cec52b303af85c2c6e4dd00aa37654dbc.diff",
+      "https://github.com/django/django/commit/6ca2bbe2efce21010eff48f1f36a3f621d698ed8.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.15"
+  },
+  "GHSA-8cjm-8mp7-r2xf": {
+    "package": "django",
+    "symbols": [
+      "django.middleware.cache.UpdateCacheMiddleware",
+      "django.contrib.sessions.backends.cache.SessionStore",
+      "django.contrib.sessions.backends.cached_db.SessionStore",
+      "django.contrib.staticfiles.testing.StaticLiveServerTestCase",
+      "django.core.cache.CacheHandler",
+      "django.core.cache.backends.base.BaseCache",
+      "django.core.cache.backends.base.CacheKeyWarning",
+      "django.core.cache.backends.base.InvalidCacheBackendError",
+      "django.core.cache.backends.base.InvalidCacheKey"
+    ],
+    "safe_symbols": [
+      "django.views.decorators.cache.cache_page",
+      "django.utils.cache.patch_cache_control"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:09:18.990202+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "768d0b6a97dd0e37e6a36e675678e545209c2954152bf5c6040e3b5e90d29f03",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/366d9ae6e8d1469c04e9ebdc1bcd098fc14a3b1e.diff",
+      "https://github.com/django/django/commit/b4330259ffbe1a031ed14daab1f35697460f10f2.diff",
+      "https://github.com/django/django/commit/d618d7ae4fec727d5b582bd24f803c28d17bf7cd.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.14"
+  },
+  "GHSA-923m-gv2p-w5qp": {
+    "package": "django",
+    "symbols": [
+      "django.utils.cache.has_vary_header"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:09:44.049058+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "7925b14b46365eefe3e238ccdf7a119aeb7cb724745e744e74de975dd1da65b2",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/1721035a72624aad7b38dd19b14013efd94b24b8.diff",
+      "https://github.com/django/django/commit/42aa0b3364d312e7c6472258d8b0e9c0277fbf22.diff",
+      "https://github.com/django/django/commit/9b62b0af71a14c657d19d95371630ba839e83d9a.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.14"
+  },
+  "GHSA-h7pc-vwp9-298g": {
+    "package": "django",
+    "symbols": [
+      "django.contrib.sessions.backends.signed_cookies.SessionStore",
+      "django.http.request.HttpRequest.get_signed_cookie"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:10:19.769718+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "7d8e35bac01370233b1f240f50be82660e07438eaa27583a1ab5ed3467eb0e58",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/594360cbf58be7f56eb6da96d58644297c99ef85.diff",
+      "https://github.com/django/django/commit/70d36515b9cc71700105a14b275583070d48b689.diff",
+      "https://github.com/django/django/commit/c807d9c398022d23cb27518fa6ecaf343efb30cf.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.14"
+  },
+  "GHSA-mm6v-q8q9-pgcf": {
+    "package": "django",
+    "symbols": [
+      "django.core.mail.backends.smtp.EmailBackend"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:10:34.087902+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "1b305cbabd26c4facac702cebe3951e2f5b16ce35fcf8ca372684de5a33f9ff6",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "5.2.14"
+  },
+  "GHSA-qpc8-7fxc-cm4p": {
+    "package": "django",
+    "symbols": [
+      "django.middleware.cache.UpdateCacheMiddleware",
+      "django.views.decorators.cache.cache_page"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:11:01.627738+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "35190e5918d976e1b4def4eac8f5ef953be030c2a3389e4f750a43f87e52c10d",
+    "fix_refs_used": [
+      "https://github.com/django/django/commit/050a3dc276f9142067260e990e4d8d42d5e32863.diff",
+      "https://github.com/django/django/commit/664652f1a2dd80d8a4cd491b4313cad915ae6669.diff",
+      "https://github.com/django/django/commit/a2faa8e895926ac5d63f72879b5ccf671b5b4ba9.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "5.2.14"
+  },
+  "GHSA-mmwr-2jhp-mc7j": {
+    "package": "django",
+    "symbols": [
+      "django.contrib.admin.filters.AllValuesFieldListFilter",
+      "django.contrib.admin.filters.BooleanFieldListFilter",
+      "django.contrib.admin.filters.ChoicesFieldListFilter",
+      "django.contrib.admin.filters.DateFieldListFilter",
+      "django.contrib.admin.filters.EmptyFieldListFilter",
+      "django.contrib.admin.filters.FieldListFilter",
+      "django.contrib.admin.filters.ListFilter",
+      "django.contrib.admin.filters.RelatedFieldListFilter"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:11:37.066985+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "654030c404b89ab82aeece8bd9913c12b07b75b634e97c09f966a3863e3eaca4",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "4.2.29"
+  },
+  "GHSA-mvfq-ggxm-9mc5": {
+    "package": "django",
+    "symbols": [
+      "django.contrib.staticfiles.handlers.ASGIStaticFilesHandler",
+      "django.core.handlers.asgi.ASGIHandler",
+      "django.core.handlers.asgi.ASGIRequest",
+      "django.core.mail.message.BadHeaderError",
+      "django.http.request.HttpHeaders",
+      "django.http.response.BadHeaderError",
+      "django.http.response.ResponseHeaders"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:12:04.985218+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "1cfcae8c8bdcfd4cd445de4a6930959c65089e98e4f9914af97e544ba80d3a8f",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "4.2.29"
+  },
+  "GHSA-57qw-cc2g-pv5p": {
+    "package": "lxml",
+    "symbols": [
+      "lxml.html.clean.Cleaner.clean_html"
+    ],
+    "safe_symbols": [
+      "lxml.html.clean.Cleaner.clean_html"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:20:00.685461+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "27407f49cb4fd7b0f03b013a0a5daff6152ebd261e8551c2f43f15adaacc088d",
+    "fix_refs_used": [
+      "https://github.com/lxml/lxml/pull/273.diff",
+      "https://github.com/lxml/lxml/commit/3f3082e0a67851cde26a48da3d1f4b75d8aa07ec.diff",
+      "https://github.com/lxml/lxml/commit/86e81ab393ba14c1be71284675851a3bdce57d69.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.3.4"
+  },
+  "GHSA-xp26-p53h-6h2p": {
+    "package": "lxml",
+    "symbols": [
+      "lxml.html.clean.Cleaner"
+    ],
+    "safe_symbols": [
+      "lxml.html.clean.Cleaner"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:20:27.149259+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "0b8f0145070bbb091265d10faeee9b64ccf60f8f32ea3fa08e467ab157f2ba10",
+    "fix_refs_used": [
+      "https://github.com/lxml/lxml/commit/6be1d081b49c97cfd7b3fbd934a193b668629109.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "4.2.4"
+  },
+  "GHSA-55x5-fj6c-h6m8": {
+    "package": "lxml",
+    "symbols": [
+      "lxml.html.clean.Cleaner",
+      "lxml.html.CheckboxGroup",
+      "lxml.html.CheckboxValues",
+      "lxml.html.Classes",
+      "lxml.html.FieldsDict",
+      "lxml.html.FormElement",
+      "lxml.html.HTMLParser",
+      "lxml.html.HtmlComment"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:21:14.894966+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "86bddc9f155a25295cf1f5b57e72af6a69e96960a565409cdb9e20bef8e02264",
+    "fix_refs_used": [
+      "https://github.com/lxml/lxml/commit/12fa9669007180a7bb87d990c375cf91ca5b664a.diff",
+      "https://github.com/lxml/lxml/commit/a3eacbc0dcf1de1c822ec29fb7d090a4b1712a9c.diff",
+      "https://github.com/lxml/lxml/commit/f2330237440df7e8f39c3ad1b1aa8852be3b27c0.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "4.6.4"
+  },
+  "GHSA-jq4v-f5q6-mjqq": {
+    "package": "lxml",
+    "symbols": [
+      "lxml.html.clean.Cleaner"
+    ],
+    "safe_symbols": [
+      "lxml.html.clean.Cleaner"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:21:43.694879+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "4609eb7f202ff38962d508dc20f8c543e251b82b2c108e77a1699cce5dea0d6e",
+    "fix_refs_used": [
+      "https://github.com/lxml/lxml/pull/316.diff",
+      "https://github.com/lxml/lxml/commit/2d01a1ba8984e0483ce6619b972832377f208a0d.diff",
+      "https://github.com/lxml/lxml/commit/a5f9cb52079dc57477c460dbe6ba0f775e14a999.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "4.6.2"
+  },
+  "GHSA-pgww-xf46-h92r": {
+    "package": "lxml",
+    "symbols": [
+      "lxml.html.clean.Cleaner"
+    ],
+    "safe_symbols": [
+      "lxml.html.clean.Cleaner.__call__",
+      "lxml.html.clean.Cleaner.clean_html"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:22:12.284875+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "bf12ccd5d9ec5d4c14513f29a6cf988c4b05c4cc722a70b0ff69d5065c2dec1d",
+    "fix_refs_used": [
+      "https://github.com/lxml/lxml/commit/a105ab8dc262ec6735977c25c13f0bdfcdec72a7.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "4.6.1"
+  },
+  "GHSA-vfmq-68hx-4jfw": {
+    "package": "lxml",
+    "symbols": [
+      "lxml.html.formfill.DefaultErrorCreator"
+    ],
+    "safe_symbols": [
+      "lxml.html.HTMLParser",
+      "lxml.html.XHTMLParser"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:22:28.524164+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "02b6ad95439f7da846bf6274e3db21e5e3afbc00b6f250f065616a3c987af39b",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "6.0.4"
+  },
+  "GHSA-pxh4-856f-4h89": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.algorithms.HMACAlgorithm.from_jwk",
+      "jwt.api_jwk.PyJWK.from_dict"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:22:57.270324+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "87daa4058d3c081c6dc4b6449cf6f2d61a4a948c5ac49e06a4949b31ed251aee",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/af8181ca0bec5e6b372fbba9afbe23702b787ceb.diff"
+    ],
+    "rejected": [
+      "jwt.api_jwk.PyJWKClient.get"
+    ],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-x33g-cr3x-6449": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.jwks_client.PyJWKClient",
+      "jwt.api_jwk.PyJWK",
+      "jwt.api_jwk.PyJWKSet",
+      "jwt.api_jws.PyJWS",
+      "jwt.api_jwt.PyJWT"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:23:32.323553+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "7e5ae08ee610a5f4c6e5f07abdb4b80d368ee214fde1aea6d4a5598c197df1b5",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/3cd9ceec33ced359decbad75b413ad668ae6332c.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.14.0"
+  },
+  "GHSA-gvp8-978c-rx2q": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.api_jwt.PyJWT.decode",
+      "jwt.api_jwt.PyJWT.decode_complete",
+      "jwt.api_jwt.PyJWT._merge_options",
+      "jwt.types.FullOptions",
+      "jwt.types.Options",
+      "jwt.types.SigOptions",
+      "jwt.warnings.RemovedInPyjwt3Warning"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:24:11.852543+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "504e0253b78322bee3da38e4e1ab6f772fdbf3a5d9bde669702e9d33e1018b34",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/0c87c8c8b1a74cac99ad8115f3050efcb7fbed35.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-jwrc-g2q2-pq5p": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.utils.is_pem_format"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:24:57.363373+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "bb794a167dc37eb826a6bb3f31a8e60572213c9eba66fef44745e1796a935664",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/8b4e233a22206b34ec1186e912e75c0b2396ac07.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-9j54-fg26-wv3r": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.api_jws.PyJWS",
+      "jwt.api_jwt.PyJWT"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:25:20.218849+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "4207a13263359f190fe3b02a34c79a3197138f5154206fed7daec6de1d61a9b6",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/f91ed44dd65baaf457f4b3353ed35e98a753934c.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-8wjv-2p76-3863": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.api_jws.PyJWS"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:25:44.101672+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "71e2b7abf50a505c4221179131ff22f0b223494fde24437a4e4d7ba1a766d06e",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/06573692ebcdec8831c3927513b3e87c31fbbb62.diff"
+    ],
+    "rejected": [
+      "jwt.api_jwt.decode",
+      "jwt.api_jwt.decode_complete"
+    ],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-hxm8-2xgr-2p9m": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.api_jws.PyJWS",
+      "jwt.api_jwt.PyJWT"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:26:11.852161+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "abad9b40ca9ef22749435d197771d3fba0e495c8a4b60fcdd8da7a8aade7fca8",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/e6f48401001609a8f99e71fcaf355fb895d508a8.diff"
+    ],
+    "rejected": [
+      "jwt.api_jws.get_unverified_header"
+    ],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-ffc3-869f-jxw9": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.algorithms.HMACAlgorithm",
+      "jwt.utils.is_pem_format",
+      "jwt.utils.raw_to_der_signature"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:26:42.890922+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "0b0bd1f0afc0bff9eb1671489336a3d0c96486f40e8e2a81bc7f0221be9a6c58",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/8b4e233a22206b34ec1186e912e75c0b2396ac07.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-w2cx-738m-mc7w": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.algorithms.HMACAlgorithm",
+      "jwt.algorithms.Algorithm",
+      "jwt.algorithms.NoneAlgorithm"
+    ],
+    "safe_symbols": [
+      "jwt.api_jwt.PyJWT",
+      "jwt.api_jws.PyJWS"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:27:17.468169+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "f0cda8c004d794154cc5122d990e8476b88a3fc03f7f96241868a32a9ef647fe",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/801cd128528c62d9b23fcd161d1a2e1c17982f95.diff"
+    ],
+    "rejected": [
+      "jwt.api_jwk.PyJWKClient"
+    ],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-9v7f-9g4p-ffgj": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.jwks_client.PyJWKClient"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:27:38.653075+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "c0b881259e0def614217a8f3345a1824ff0df827f05c793b5313bfc5e7ef1c5e",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/0a795b8e1f6ef08f634aa7086fc41cc6d5ce3e56.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-p4g4-x82p-q773": {
+    "package": "pyjwt",
+    "symbols": [
+      "jwt.algorithms.HMACAlgorithm",
+      "jwt.algorithms.Algorithm"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:28:01.713029+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "99e4412949dd8d910f541e4f7b5e35c2da04fec01b53cc6abb43698d785061c0",
+    "fix_refs_used": [
+      "https://github.com/jpadilla/pyjwt/commit/2798504fa2663364573cf2d1043d8d7fef389499.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.13.0"
+  },
+  "GHSA-m2h6-j472-rp4c": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.x509.extensions.GeneralNames"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:28:29.352585+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "bd682874c99323e352a6490de5da6aaaa4a2b040ad240b21e4cbe63ec6cf2e60",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/pull/14888.diff",
+      "https://github.com/pyca/cryptography/commit/286c89128.diff",
+      "https://github.com/pyca/cryptography/commit/4d035a4225965edeffd312079a510ef25fcfdcb2.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "48.0.1"
+  },
+  "GHSA-jwv3-5hgf-82ww": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.x509.extensions.DuplicateExtension",
+      "cryptography.x509.extensions.PrecertificateSignedCertificateTimestamps",
+      "cryptography.x509.extensions.SignedCertificateTimestamps"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:28:56.989625+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "0b3774ecc259c12dcd922cd6635c4e5966c261c2a1bba11e0aabbf038f5ac57f",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/pull/14960.diff",
+      "https://github.com/pyca/cryptography/commit/3763aa79b.diff",
+      "https://github.com/pyca/cryptography/commit/4a12cf49675a184e47f912b00b04f3a629283582.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "48.0.1"
+  },
+  "GHSA-g6cj-pr64-35w5": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.primitives.asymmetric.padding.PKCS1v15",
+      "cryptography.hazmat.primitives.ciphers.base.AEADDecryptionContext",
+      "cryptography.hazmat.primitives.padding.PKCS7",
+      "cryptography.hazmat.primitives.serialization.pkcs12.PKCS12KeyAndCertificates",
+      "cryptography.hazmat.primitives.serialization.pkcs7.OpenSSLMimePart",
+      "cryptography.hazmat.primitives.serialization.pkcs7.PKCS7EnvelopeBuilder",
+      "cryptography.hazmat.primitives.serialization.pkcs7.PKCS7Options",
+      "cryptography.hazmat.primitives.serialization.pkcs7.PKCS7SignatureBuilder"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:29:45.693968+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "f1b98a266c4e15b726f1e4d42e0e265aa2892c35723b929d922e5c35daa7188a",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/pull/15369.diff",
+      "https://github.com/pyca/cryptography/commit/53fccd93413a8d7f07d6d8999681f27b75cffa3f.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "49.0.0"
+  },
+  "GHSA-r6ph-v2qm-q3c2": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT163K1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT163R2",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT233K1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT233R1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT283K1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT283R1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT409K1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT409R1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT571K1",
+      "cryptography.hazmat.primitives.asymmetric.ec.SECT571R1"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:30:44.336155+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "248df68b9f0b0c0e43b4ff683cee557c7e55b0b0555da9f2de470cbc295b9373",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/commit/0eebb9dbb6343d9bc1d91e5a2482ed4e054a6d8c.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "46.0.4"
+  },
+  "GHSA-79v4-65xg-pq4g": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.backends.openssl.backend.Backend",
+      "cryptography.hazmat.bindings.openssl.binding.Binding"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:33:13.694064+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "3f5b5740a6287fb961e4ef219f2bea33e0acf5357b0350a597359deb36cf1ca1",
+    "fix_refs_used": [
+      "https://github.com/openssl/openssl/commit/738d4f9fdeaad57660dcba50a619fafced3fd5e9.diff",
+      "https://github.com/openssl/openssl/commit/798779d43494549b611233f92652f0da5328fbe7.diff",
+      "https://github.com/openssl/openssl/commit/87ebd203feffcf92ad5889df92f90bb0ee10a699.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "44.0.0"
+  },
+  "GHSA-9v9h-cgj8-h64p": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.primitives.serialization.pkcs12.load_key_and_certificates",
+      "cryptography.hazmat.primitives.serialization.pkcs12.serialize_key_and_certificates"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:34:57.848436+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "5bc7ef6b3e775ea1a5a57afeb93d9811aabf491762ce2f24cd1fe751a86c94cd",
+    "fix_refs_used": [
+      "https://github.com/github/advisory-database/pull/3472.diff",
+      "https://github.com/openssl/openssl/pull/23362.diff",
+      "https://github.com/alexcrichton/openssl-src-rs/commit/add20f73b6b42be7451af2e1044d4e0e778992b2.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "42.0.1"
+  },
+  "GHSA-jfhm-5ghh-2f97": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.primitives.serialization.pkcs7.load_pem_pkcs7_certificates",
+      "cryptography.hazmat.primitives.serialization.pkcs7.load_der_pkcs7_certificates"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:35:30.835735+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "cf6acc1c0ccaf01dee5346e04f5efd3275982d5a38cd79520c11956f40a4553d",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/pull/9926.diff",
+      "https://github.com/pyca/cryptography/commit/f09c261ca10a31fe41b1262306db7f8f1da0e48a.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "41.0.5"
+  },
+  "GHSA-v8gr-m533-ghj9": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.backends.openssl.backend.Backend",
+      "cryptography.hazmat.backends.openssl.backend.GetCipherByName",
+      "cryptography.hazmat.bindings.openssl.binding.Binding"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:36:03.153063+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "54f03255982a1e81ab6fe121c6ec48f04cda5f26713632f9e50c921f58f98510",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/commit/fc11bce6930e591ce26a2317b31b9ce2b3e25512.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "41.0.3"
+  },
+  "GHSA-jm77-qphf-c4w8": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.backends.openssl.backend.Backend",
+      "cryptography.hazmat.backends.openssl.backend.GetCipherByName",
+      "cryptography.hazmat.bindings.openssl.binding.Binding"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:36:32.798548+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "ec1d2e1a0087882cd26783fe85dc261816222b1c6ae50d8277ebc0de45e7f62b",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/commit/b22271cf3c3dd8dc8978f8f4b00b5c7060b6538d.diff",
+      "https://github.com/pyca/cryptography/commit/bfa4d95f0f356f2d535efd5c775e0fb3efe90ef2.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "41.0.2"
+  },
+  "GHSA-cf7p-gm2m-833m": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.primitives.serialization.pkcs12.PKCS12KeyAndCertificates"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:36:58.760064+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "a57e78e81318688192d2c2530ab9af78bc3a9326fb67577899c14ed5b157c030",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/pull/7960.diff",
+      "https://github.com/pyca/cryptography/pull/9208.diff",
+      "https://github.com/pyca/cryptography/commit/1ca7adc97b76a9dfbd3d850628b613eb93b78fc3.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "41.0.1"
+  },
+  "GHSA-5cpq-8wj7-hf2v": {
+    "package": "cryptography",
+    "symbols": [
+      "cryptography.hazmat.backends.openssl.backend.Backend",
+      "cryptography.hazmat.backends.openssl.backend.GetCipherByName",
+      "cryptography.hazmat.bindings.openssl.binding.Binding"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:37:24.089104+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "c7700e188d0a22ef68153e9fd606a5e28918ebac667edce60604c6a62370fbe4",
+    "fix_refs_used": [
+      "https://github.com/pyca/cryptography/commit/8708245ccdeaff21d65eea68a4f8d2a7c5949a22.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "40.0.2"
+  },
+  "GHSA-r374-rxx8-8654": {
+    "package": "paramiko",
+    "symbols": [
+      "paramiko.rsakey.RSAKey"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:37:49.747989+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "0c4eab6b31fc2598a0b848363ec6b520f4b9215003a58eba68e467d1c4db0078",
+    "fix_refs_used": [
+      "https://github.com/paramiko/paramiko/commit/a4489456b6f65281e172380cc4826cee5e851dbb.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "4.0.0"
+  },
+  "GHSA-45x7-px36-x8w8": {
+    "package": "paramiko",
+    "symbols": [
+      "paramiko.client.SSHClient"
+    ],
+    "safe_symbols": [
+      "paramiko.client.SSHClient"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:38:21.504773+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "95ec7936da858e4097654e207190deffcff2408684163573b158a8171a263281",
+    "fix_refs_used": [
+      "https://github.com/libssh2/libssh2/pull/1291.diff",
+      "https://github.com/NixOS/nixpkgs/pull/275249.diff",
+      "https://github.com/mwiede/jsch/pull/461.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.3.2"
+  },
+  "GHSA-f8q4-jwww-x3wv": {
+    "package": "paramiko",
+    "symbols": [
+      "paramiko.pkey.PKey.write_private_key_file"
+    ],
+    "safe_symbols": [
+      "paramiko.pkey.PKey._write_private_key_file"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:38:45.357075+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "7a0687673ec5f564baebbcee93f492293b20d729ebd47d782681489ce49802ac",
+    "fix_refs_used": [
+      "https://github.com/paramiko/paramiko/commit/4c491e299c9b800358b16fa4886d8d94f45abe2e.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "2.9.2"
+  },
+  "GHSA-232r-66cg-79px": {
+    "package": "paramiko",
+    "symbols": [
+      "paramiko.ssh_exception.AuthenticationException",
+      "paramiko.ssh_exception.BadAuthenticationType",
+      "paramiko.ssh_exception.PartialAuthentication"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:39:16.127774+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "65beb4fc3e7b8de00d12538f8bd43a62a335e7a5a889b97129c4c2e65fce833f",
+    "fix_refs_used": [
+      "https://github.com/paramiko/paramiko/commit/fa29bd8446c8eab237f5187d28787727b4610516.diff",
+      "https://github.com/paramiko/paramiko/commit/e9dfd854bdaf8af15d7834f7502a0451d217bb8c.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "1.17.5"
+  },
+  "GHSA-wqmm-q65g-2hqr": {
+    "package": "paramiko",
+    "symbols": [
+      "paramiko.channel.ChannelFile"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:39:27.850876+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "c6b04bfcde953cdcc58092985222304807f28ea5e85f22602ea7be341eecdb60",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "1.7.1"
+  },
+  "GHSA-f2j6-wrhh-v25m": {
+    "package": "paramiko",
+    "symbols": [
+      "paramiko.ssh_exception.AuthenticationException",
+      "paramiko.ssh_exception.BadAuthenticationType",
+      "paramiko.ssh_exception.PartialAuthentication"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:39:45.217063+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "65da4a94aa7f52ec6bd7ded89b6746e76e6228336f4268e023c2097edb07aaa0",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "2.0.8"
+  },
+  "GHSA-f9xw-jh8m-3mwq": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.client_reqrep.ClientRequest",
+      "aiohttp.client_reqrep.RequestInfo",
+      "aiohttp.formdata.FormData",
+      "aiohttp.helpers.RequestKey",
+      "aiohttp.http_exceptions.HttpBadRequest",
+      "aiohttp.http_parser.HttpRequestParser",
+      "aiohttp.http_parser.RawRequestMessage",
+      "aiohttp.tracing.TraceRequestChunkSentParams"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:40:32.935356+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "1797a4f9b183a68a234f52081159b8ac06d21780024aea0cf7bef001a7e18065",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/6d4e7b01f9b951aa084a75d7356e907d4ee80411.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-gx76-c99x-2c96": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.abc.AbstractCookieJar",
+      "aiohttp.cookiejar.CookieJar",
+      "aiohttp.cookiejar.DummyCookieJar"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:40:57.883409+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "f98b6ccc213a69993d15543f8e3954f2c703d24170299ca6ec88c3b536214d6f",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/6a07c171ef9f3be583e2907dcd1931372efca8d6.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-6cjc-53gc-5rqm": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.client.ClientSession",
+      "aiohttp.cookiejar.CookieJar"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:41:24.095074+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "db9eca91ea6367fdf095827207f284d0387934dfd6358e842386c97440349bfe",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/9dd8eaf4e31f1237ef2c1574a8c82a739fca5805.diff"
+    ],
+    "rejected": [
+      "aiohttp.client.request"
+    ],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-pqxq-w44r-73xw": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.http_parser.HttpParser",
+      "aiohttp.client_reqrep.ClientRequest",
+      "aiohttp.client_reqrep.RequestInfo",
+      "aiohttp.helpers.RequestKey",
+      "aiohttp.http_exceptions.HttpBadRequest",
+      "aiohttp.http_parser.ChunkState",
+      "aiohttp.http_parser.DeflateBuffer",
+      "aiohttp.http_parser.HeadersParser"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:41:56.743799+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "41d007a5062eee46c28664cb4ef05c81a56f15d76554220f345c499d36d56025",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/9b27347e61454d9f8ca2055f4c67a37dee336e83.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-9xw5-w5jj-pvcg": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.multipart.BadContentDispositionHeader",
+      "aiohttp.multipart.BadContentDispositionParam",
+      "aiohttp.multipart.BodyPartReader",
+      "aiohttp.multipart.BodyPartReaderPayload",
+      "aiohttp.multipart.MultipartPayloadWriter",
+      "aiohttp.multipart.MultipartReader",
+      "aiohttp.multipart.MultipartResponseWrapper",
+      "aiohttp.multipart.MultipartWriter"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:42:34.889983+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "2928ec2b28253ebb2a4eb74f6d95f029d5e0bb6035e4f1c13716306dbc9783fc",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/2d94633b7f1b4c1ba07d647b629a8440652b2d09.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-5wr8-gcqf-gqf3": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.web_protocol.RequestHandler",
+      "aiohttp.web_server.Server",
+      "aiohttp.web_app.Application"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:42:59.463371+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "e54e4732297e94a87d5d1ace50e0c396e9857333a64a79fdd6cbec6a6387aab5",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/be846822b4b3a5a54b6163e794b42dc06fba54a3.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-494j-54xm-rwp3": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.abc.AbstractCookieJar",
+      "aiohttp.cookiejar.CookieJar",
+      "aiohttp.cookiejar.DummyCookieJar"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:43:22.308646+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "21e6a662ceb33060c631172c3f34305997147b2ad6c1259879c8898568e1d041",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/999c356d61e966faffa97b06ab0d0455226d36c5.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-2g87-pp6c-29x5": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.web_exceptions.HTTPMultipleChoices",
+      "aiohttp._websocket.reader_py.WebSocketReader",
+      "aiohttp._websocket.reader_py.WebSocketDataQueue",
+      "aiohttp.client.ClientSession",
+      "aiohttp.client_ws.ClientWebSocketResponse",
+      "aiohttp.web_app.Application",
+      "aiohttp.web_protocol.RequestHandler",
+      "aiohttp.web_ws.WebSocketResponse"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:44:16.392241+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "167123d643faea8669a074e01f3a562f1d45082cd075e465dc6ff23f17bbea79",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/09bcaa73ff084a0c539bbf16a0a78743acb7141f.diff",
+      "https://github.com/aio-libs/aiohttp/commit/0ae507423f681161efa77d20052b4054397c7fb6.diff",
+      "https://github.com/aio-libs/aiohttp/commit/3d850ee9b92573c7e913821cbcb96005beb3f4df.diff"
+    ],
+    "rejected": [
+      "aiohttp.client.request"
+    ],
+    "indexed_version": "3.14.3"
+  },
+  "GHSA-cq5v-8q36-5273": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.client.ClientSession"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:44:45.568140+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "3b830f706b5db5de17277c5d1628e21b335e9f58390a902ea2e56073d6944aa3",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/pull/13223.diff",
+      "https://github.com/aio-libs/aiohttp/commit/49f65d54150397892f7bcc4aae887767d51c322d.diff"
+    ],
+    "rejected": [
+      "aiohttp.client.request"
+    ],
+    "indexed_version": "3.14.2"
+  },
+  "GHSA-mfx4-hv73-q22v": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp.http_parser.HttpParser",
+      "aiohttp.http_parser.HttpPayloadParser",
+      "aiohttp.http_parser.DeflateBuffer",
+      "aiohttp.http_parser.HeadersParser"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:45:20.285927+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "49adcdd4a2132d401288de1f9d975193fe15056035c110a35414ebb84d60f7f1",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/pull/13017.diff",
+      "https://github.com/aio-libs/aiohttp/commit/6ae358f0983c3f4d6f67692b2f8e65dc8e091c98.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.1"
+  },
+  "GHSA-mq44-7p77-q5h7": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp._websocket.models.WSCloseCode",
+      "aiohttp._websocket.models.WSMessage",
+      "aiohttp._websocket.models.WSMsgType",
+      "aiohttp._websocket.models.WebSocketError",
+      "aiohttp.client.ClientSession",
+      "aiohttp.client.ClientTimeout",
+      "aiohttp.client_exceptions.ClientConnectionError",
+      "aiohttp.client_exceptions.ClientConnectionResetError"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:46:01.981649+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "f087f8cfe9fc782b3ea8148622a39032e2eb02a3f446bc5b9e9db49a976dde32",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/pull/12978.diff",
+      "https://github.com/aio-libs/aiohttp/commit/47fb6ae354d4fa22048f4dbe7dbf82b625f0a2f6.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.1"
+  },
+  "GHSA-xcgm-r5h9-7989": {
+    "package": "aiohttp",
+    "symbols": [
+      "aiohttp._websocket.reader_py.WebSocketReader"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:46:27.771389+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "fb8c040359ef9bba0a2737f63b4b3edf8b460ed61f1c29450cff137324263cf0",
+    "fix_refs_used": [
+      "https://github.com/aio-libs/aiohttp/commit/14b6ee851fb16ec199acb950de0c82d476799e7d.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.14.0"
+  },
+  "GHSA-5wmx-573v-2qwq": {
+    "package": "markdown",
+    "symbols": [
+      "markdown.extensions.md_in_html.HTMLExtractorExtra.parse_pi",
+      "markdown.extensions.md_in_html.HTMLExtractorExtra.parse_html_declaration",
+      "markdown.htmlparser.HTMLExtractor.parse_pi",
+      "markdown.htmlparser.HTMLExtractor.parse_html_declaration"
+    ],
+    "safe_symbols": [
+      "markdown.extensions.md_in_html.MarkdownInHTMLPostprocessor",
+      "markdown.extensions.md_in_html.MarkdownInHtmlExtension",
+      "markdown.extensions.md_in_html.MarkdownInHtmlProcessor",
+      "markdown.extensions.md_in_html.makeExtension"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:48:18.415280+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "d96fb6cc47c4ae6efc2c23580b76d0dc1cc5ba6555eae124543d01409d833e92",
+    "fix_refs_used": [
+      "https://github.com/Python-Markdown/markdown/pull/1535.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.8"
+  },
+  "GHSA-vv2x-vrpj-qqpq": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.clean"
+    ],
+    "safe_symbols": [
+      "bleach.clean"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:48:46.072474+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "fa5a555795fac0cc692fffc93cdf95945dd88052cb1b9c4b2cf5572b218eebfb",
+    "fix_refs_used": [
+      "https://github.com/mozilla/bleach/commit/79b7a3c5e56a09d1d323a5006afa59b56162eb13.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.2.3"
+  },
+  "GHSA-q65m-pv3f-wr5r": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.clean"
+    ],
+    "safe_symbols": [
+      "bleach.clean"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:49:07.809469+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "df0f10c3a35baf5e80b4aa538698872026beadbcc2f51487dc1cb9c80330c92b",
+    "fix_refs_used": [
+      "https://github.com/mozilla/bleach/commit/f77e0f6392177a06e46a49abd61a4d9f035e57fd.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "3.1.0"
+  },
+  "GHSA-m9mq-p2f9-cfqv": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.clean",
+      "bleach.sanitizer.BleachSanitizerFilter",
+      "bleach.sanitizer.BleachSanitizerFilter.sanitize_characters"
+    ],
+    "safe_symbols": [
+      "bleach.clean",
+      "bleach.sanitizer.BleachSanitizerFilter",
+      "bleach.sanitizer.BleachSanitizerFilter.sanitize_characters"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:49:46.967977+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "3edd3aa71a07dcf90459a5594d6f759eea30072b72fc1c5b73f5866eacd9a921",
+    "fix_refs_used": [
+      "https://github.com/mozilla/bleach/commit/c5df5789ec3471a31311f42c2d19fc2cf21b35ef.diff"
+    ],
+    "rejected": [
+      "bleach.sanitizer.BleachSanitizerFilter.sanitize_uri_value",
+      "bleach.sanitizer.BleachSanitizerFilter.sanitize_uri_value"
+    ],
+    "indexed_version": "2.1.2"
+  },
+  "GHSA-gj48-438w-jh9v": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.sanitizer.Cleaner"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:50:06.637843+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "1e8f3bea87cdf75ed63e125374af49d4326894a0a15e44847fdbde61e502bfae",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "6.3.0"
+  },
+  "GHSA-g75f-g53v-794x": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.linkifier.LinkifyFilter"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:50:28.207079+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "a60bc02fff42ab048e02ae480f84d4e1485fd4259e53b144763408637e9b4985",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "6.3.0"
+  },
+  "GHSA-8rfp-98v4-mmr6": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.clean"
+    ],
+    "safe_symbols": [
+      "bleach.clean"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:50:42.766565+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "debca2f7bb57b53a861eef45d122174f470c3aac59a86e98d8ea16ead1d275c5",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "6.3.0"
+  },
+  "GHSA-vqhp-cxgc-6wmm": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.clean"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:50:54.766120+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "1cef724bbc7a140f870e1ab64fee9f0a60e0617f6ca75c0a5f9967bdd6949913",
+    "fix_refs_used": [],
+    "rejected": [],
+    "indexed_version": "3.1.3"
+  },
+  "GHSA-m6xf-fq7q-8743": {
+    "package": "bleach",
+    "symbols": [
+      "bleach.clean"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:51:13.706742+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "0541b20575d26b760e02986b298a9b4eec9a2b6f775a6f3aad63d0222ca7d86e",
+    "fix_refs_used": [],
+    "rejected": [
+      "bleach.clean(strip=True)",
+      "bleach.clean(whitelist=['script', 'noscript', 'style', 'noframes', 'xmp', 'noembed', 'iframe'])"
+    ],
+    "indexed_version": "3.1.1"
+  },
+  "GHSA-r4j5-9xpp-3985": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.http1connection.HTTP1Connection",
+      "tornado.http1connection.HTTP1ServerConnection",
+      "tornado.httpserver.HTTPServer",
+      "tornado.simple_httpclient.SimpleAsyncHTTPClient",
+      "tornado.web.RequestHandler",
+      "tornado.websocket.WebSocketHandler"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:52:10.427173+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "093e9863c7b99fa3507e7d67f086b9ec8fcdfcecd56a299d660e71d063f8b256",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3773.diff",
+      "https://github.com/tornadoweb/tornado/commit/ceab33581489751a66fba8566ad6d5960d4b01c8.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.6rc1"
+  },
+  "GHSA-pw9p-v7r6-gx4p": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.web.RedirectHandler",
+      "tornado.web.StaticFileHandler"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:52:40.755654+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "dfd6ccef490dffb8d1b7b2478d746aea2a374304012a6067e6da1da2f34ae41d",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3786.diff",
+      "https://github.com/tornadoweb/tornado/commit/940ea725bdd9bc68231d68a105eef17ea6e11233.diff",
+      "https://github.com/tornadoweb/tornado/commit/cc75ab0eb3af459c714895a49f682ad354f50117.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.6rc1"
+  },
+  "GHSA-pcg2-g6cj-q92c": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.curl_httpclient.CurlAsyncHTTPClient",
+      "tornado.http1connection.HTTP1Connection",
+      "tornado.http1connection.HTTP1ConnectionParameters",
+      "tornado.http1connection.HTTP1ServerConnection",
+      "tornado.httpclient.AsyncHTTPClient",
+      "tornado.httpclient.HTTPClient",
+      "tornado.httpclient.HTTPClientError",
+      "tornado.httpclient.HTTPRequest"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:53:25.151494+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "f2756911a609f95e476c98716035ad1d24925274f6111308d5fa417f73b3f03a",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3765.diff",
+      "https://github.com/tornadoweb/tornado/commit/1b7a1dc9f340f52de929852e8125aa12f25297c9.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.6rc1"
+  },
+  "GHSA-3hv7-mjh2-fv65": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.httputil.HTTPServerRequest.__init__"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:54:04.001581+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "056247ee5745a5c8d485495f38b59f860b8276d652647595ea6fe5550199ecfd",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3719.diff",
+      "https://github.com/tornadoweb/tornado/commit/03945136ea9746eccf61caf88edae39642e59c93.diff",
+      "https://github.com/tornadoweb/tornado/commit/8a61dd6005f42733015160f3c23a2bcffe200542.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.8"
+  },
+  "GHSA-chx6-46f5-w4vp": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.curl_httpclient.CurlAsyncHTTPClient",
+      "tornado.httpclient.HTTPResponse",
+      "tornado.httputil.ResponseStartLine"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:54:51.433501+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "02528a067b0736d3e74409cf5f4be16ae49edeb4785894b58c80b0cb42aa2dc3",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3719.diff",
+      "https://github.com/tornadoweb/tornado/commit/15f056080d8e456f92cca8ad0c33e5a5480414ac.diff",
+      "https://github.com/tornadoweb/tornado/commit/6564e0a0922c16f239d3a18adccd04736e380c89.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.8"
+  },
+  "GHSA-c2m8-h5v5-343r": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.web.StaticFileHandler"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:55:27.741790+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "37fff9d55c48789489b8ce5da6731a6351e56e9f5f87b0aabab897c99a41cda3",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3719.diff",
+      "https://github.com/tornadoweb/tornado/commit/437ab5f76565403b3403438d2e555d11f8128d32.diff",
+      "https://github.com/tornadoweb/tornado/commit/f9f50b8bab265a2abf9f2415a3d2da6264a5450b.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.8"
+  },
+  "GHSA-mpf4-983q-p7j4": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.escape.parse_qs_bytes",
+      "tornado.httputil.HTTPServerRequest",
+      "tornado.httputil.ParseBodyConfig",
+      "tornado.httputil.parse_body_arguments",
+      "tornado.httputil.parse_multipart_form_data"
+    ],
+    "safe_symbols": [
+      "tornado.escape.parse_qs_bytes",
+      "tornado.httputil.parse_body_arguments",
+      "tornado.httputil.parse_multipart_form_data"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:56:26.806374+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "ad15294da82a117540fac9b9479c9f908668a51b8649f5463a7d9601fedacb81",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3704.diff",
+      "https://github.com/tornadoweb/tornado/commit/8d6363ed7b69d5f0da806efe34d256627a2191de.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.7"
+  },
+  "GHSA-8423-8fgw-73vq": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.httputil.parse_multipart_form_data",
+      "tornado.httputil.HTTPServerRequest",
+      "tornado.httputil.ParseBodyConfig",
+      "tornado.httputil.ParseMultipartConfig"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:57:02.559719+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "1867528a6d110aac1470853ef285d81cda81d9966f45d31bb9fe07a4b0590123",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3704.diff",
+      "https://github.com/tornadoweb/tornado/commit/de85b3f87446e323e881bbaa3d5a74f4b76e5f05.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.7"
+  },
+  "GHSA-wwv5-g3v4-889x": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.web.RequestHandler.set_cookie"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:57:30.499051+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "d0628505783e1ce9d7e7b38ff55560dab41d7918b49c671a4b9c907c3b3c90f3",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/pull/3704.diff",
+      "https://github.com/tornadoweb/tornado/pull/3706.diff",
+      "https://github.com/tornadoweb/tornado/commit/6ef836e43e1278530041376adb32504daa977b91.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.7"
+  },
+  "GHSA-jhmp-mqwm-3gq8": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.httputil.parse_multipart_form_data",
+      "tornado.httputil.parse_body_arguments"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:57:53.318874+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "4447127dc9cfc9f24afebdb8f232dc58cc5d40ff43ea68828f152626c96e264a",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/commit/771472cfdaeebc0d89a9cc46e249f8891a6b29cd.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.2"
+  },
+  "GHSA-c98p-7wgm-6p64": {
+    "package": "tornado",
+    "symbols": [
+      "tornado.httputil.HTTPHeaders",
+      "tornado.httputil.parse_multipart_form_data"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T22:58:15.075845+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "1adc11b61b92a4e041f0c5648c6096bf4b022fa586f1dfa12bc03622bce25a68",
+    "fix_refs_used": [
+      "https://github.com/tornadoweb/tornado/commit/771472cfdaeebc0d89a9cc46e249f8891a6b29cd.diff"
+    ],
+    "rejected": [],
+    "indexed_version": "6.5.2"
   }
 }

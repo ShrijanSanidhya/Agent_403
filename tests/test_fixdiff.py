@@ -1,6 +1,7 @@
 """Fix-diff parsing, function mapping, and one real PyYAML diff."""
 
 import pytest
+import requests
 
 from agent403.callgraph import Index, ModuleInfo
 from agent403.fixdiff import (
@@ -66,6 +67,25 @@ def test_map_to_module_uses_the_longest_suffix() -> None:
     index.modules["yaml"] = ModuleInfo("yaml", "yaml/__init__.py", "dep")
     found = map_to_module("lib3/yaml/constructor.py", index, ["yaml"])
     assert found == "yaml.constructor"
+
+
+def test_pull_diff_403_uses_the_patch_mirror() -> None:
+    class FakeHttp:
+        def __init__(self) -> None:
+            self.urls: list[str] = []
+
+        def get_text(self, url: str) -> str:
+            self.urls.append(url)
+            if "github.com" in url:
+                response = requests.Response()
+                response.status_code = 403
+                raise requests.HTTPError(response=response)
+            return "diff --git a/x.py b/x.py\n"
+
+    http = FakeHttp()
+    text = fetch_diff(http, "https://github.com/org/repo/pull/12.diff")  # type: ignore[arg-type]
+    assert text.startswith("diff --git")
+    assert http.urls[1] == "https://patch-diff.githubusercontent.com/raw/org/repo/pull/12.diff"
 
 
 @pytest.mark.network
