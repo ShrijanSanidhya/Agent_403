@@ -122,7 +122,7 @@ def from_env(enabled: bool) -> tuple[LLM | None, str | None]:
         return OpenAICompatLLM(model, base, key), None
     host = os.environ.get("OLLAMA_HOST") or "http://localhost:11434"
     try:
-        response = requests.get(f"{host.rstrip('/')}/api/tags", timeout=2)
+        response = requests.get(f"{host.rstrip('/')}/api/tags", timeout=10)
         response.raise_for_status()
         payload = response.json()
     except (requests.RequestException, ValueError) as exc:

@@ -1,0 +1,54 @@
+┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Package ┃ Version ┃ Advisory             ┃ Verdict   ┃ Why                   ┃
+┡━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━┩
+│ pyyaml  │ 5.3.1   │ GHSA-8q59-q68h-6hv4  │ REACHABLE │ call path found:      │
+│         │         │ CVE-2020-14343       │           │ main.main ->          │
+│         │         │                      │           │ config.load_config -> │
+│         │         │                      │           │ yaml.full_load        │
+└─────────┴─────────┴──────────────────────┴───────────┴───────────────────────┘
+  main.main  (main.py:4)
+  -> config.load_config  (main.py:5)
+  -> yaml.full_load  (config.py:6)
+1 reachable, 0 uncertain, 0 not affected
+GHSA-8q59-q68h-6hv4:
+  call path found: main.main -> config.load_config -> yaml.full_load
+  yaml.load (cache, high) — This function is vulnerable to arbitrary code 
+execution when processing untrusted YAML files.
+  yaml.load_all (cache, high) — This function is vulnerable to arbitrary code 
+execution when processing untrusted YAML files.
+  yaml.full_load (cache, high) — This function is vulnerable to arbitrary code 
+execution when processing untrusted YAML files.
+  yaml.full_load_all (cache, high) — This function is vulnerable to arbitrary 
+code execution when processing untrusted YAML files.
+  yaml.constructor.FullConstructor (cache, high) — This class is vulnerable to 
+arbitrary code execution when processing untrusted YAML files.
+  yaml.constructor.UnsafeConstructor (cache, high) — This class is vulnerable to
+arbitrary code execution when processing untrusted YAML files.
+  yaml.cyaml.CFullLoader (cache, high) — This class is vulnerable to arbitrary 
+code execution when processing untrusted YAML files.
+  yaml.cyaml.CUnsafeLoader (cache, high) — This class is vulnerable to arbitrary
+code execution when processing untrusted YAML files.
+  vulnerable: yaml.load — This function is vulnerable to arbitrary code 
+execution when processing untrusted YAML files.
+  vulnerable: yaml.load_all — This function is vulnerable to arbitrary code 
+execution when processing untrusted YAML files.
+  vulnerable: yaml.full_load — This function is vulnerable to arbitrary code 
+execution when processing untrusted YAML files.
+  vulnerable: yaml.full_load_all — This function is vulnerable to arbitrary code
+execution when processing untrusted YAML files.
+  vulnerable: yaml.constructor.FullConstructor — This class is vulnerable to 
+arbitrary code execution when processing untrusted YAML files.
+  vulnerable: yaml.constructor.UnsafeConstructor — This class is vulnerable to 
+arbitrary code execution when processing untrusted YAML files.
+  vulnerable: yaml.cyaml.CFullLoader — This class is vulnerable to arbitrary 
+code execution when processing untrusted YAML files.
+  vulnerable: yaml.cyaml.CUnsafeLoader — This class is vulnerable to arbitrary 
+code execution when processing untrusted YAML files.
+  safe: yaml.safe_load — This function is safe to use with untrusted YAML files 
+as it does not execute arbitrary code.
+  safe: yaml.safe_load_all — This function is safe to use with untrusted YAML 
+files as it does not execute arbitrary code.
+  safe: yaml.constructor.SafeConstructor — This class is safe to use with 
+untrusted YAML files as it does not execute arbitrary code.
+  safe: yaml.cyaml.CSafeLoader — This class is safe to use with untrusted YAML 
+files as it does not execute arbitrary code.

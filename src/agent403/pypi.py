@@ -74,9 +74,7 @@ def fetch(
     if local is not None:
         return local
     normalized = normalize_name(name)
-    if offline:
-        raise OfflineError(f"offline mode: {normalized}=={version} is not available locally")
-    client = http if http is not None else HttpClient()
+    client = http if http is not None else HttpClient(offline=offline)
     return _download(client, normalized, version)
 
 
@@ -141,6 +139,8 @@ def _download(http: HttpClient, name: str, version: str) -> DistSource:
     if dest.is_dir() and any(dest.iterdir()):
         origin = "wheel" if any(dest.glob("*.dist-info")) else "sdist"
         return _describe(name, version, dest, origin)
+    if http.offline:
+        raise OfflineError(f"offline mode: {name}=={version} is not available locally")
     payload = http.get_json(_PYPI_JSON.format(name=name, version=version))
     if not isinstance(payload, dict):
         raise DigestMismatchError(f"unexpected PyPI response for {name}=={version}")

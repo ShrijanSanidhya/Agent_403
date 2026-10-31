@@ -78,6 +78,16 @@ def test_wheel_requires_and_top_level(tmp_path: Path, monkeypatch: pytest.Monkey
     assert (dist.root / "coolpkg").is_dir()
 
 
+def test_offline_reuses_an_extracted_sdist(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("AGENT403_CACHE_DIR", str(tmp_path))
+    package = tmp_path / "src" / "coolpkg-1.0" / "coolpkg"
+    package.mkdir(parents=True)
+    (package / "__init__.py").write_text("", encoding="utf-8")
+    dist = fetch("coolpkg", "1.0", offline=True, sites=[])
+    assert dist.origin == "sdist"
+    assert dist.import_names == ["coolpkg"]
+
+
 def test_sdist_beats_a_python2_wheel(monkeypatch: pytest.MonkeyPatch) -> None:
     archive = io.BytesIO()
     with tarfile.open(fileobj=archive, mode="w:gz") as bundle:

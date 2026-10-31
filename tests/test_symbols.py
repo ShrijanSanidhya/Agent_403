@@ -76,6 +76,53 @@ def test_fake_llm_rejects_invented_names() -> None:
     assert llm.calls == 1
 
 
+def test_subclass_and_its_caller_are_candidates(tmp_path: Path) -> None:
+    package = tmp_path / "lib"
+    package.mkdir()
+    (package / "__init__.py").write_text("from .api import Child, entry\n", encoding="utf-8")
+    (package / "api.py").write_text(
+        "class Base:\n"
+        "    def changed(self):\n"
+        "        return 1\n"
+        "\n"
+        "\n"
+        "class Child(Base):\n"
+        "    pass\n"
+        "\n"
+        "\n"
+        "def entry():\n"
+        "    return Child()\n"
+        "\n"
+        "\n"
+        "def other():\n"
+        "    return 1\n",
+        encoding="utf-8",
+    )
+    index = Index.build([Root(tmp_path, "dep", ["lib"])])
+    assert index.subclasses_of("lib.api.Base") == ["lib.api.Child"]
+    public = public_api(index, ["lib"])
+    found = candidate_symbols(index, ["lib"], ["lib.api.Base.changed"], public)
+    assert "lib.api.entry" in found
+    assert "lib.api.Child" in found
+    assert "lib.api.other" not in found
+
+
+def test_public_api_ranks_relevant_submodules_first(tmp_path: Path) -> None:
+    package = tmp_path / "lib"
+    (package / "sandbox").mkdir(parents=True)
+    (package / "__init__.py").write_text("", encoding="utf-8")
+    (package / "sandbox" / "__init__.py").write_text("", encoding="utf-8")
+    (package / "sandbox" / "env.py").write_text(
+        "class SandboxedEnvironment:\n    pass\n",
+        encoding="utf-8",
+    )
+    (package / "plain.py").write_text("class Template:\n    pass\n", encoding="utf-8")
+    index = Index.build([Root(tmp_path, "dep", ["lib"])])
+    ranked = public_api(index, ["lib"], "sandbox escape in the environment")
+    assert ranked[0] == "lib.sandbox.env.SandboxedEnvironment"
+    assert "lib.plain.Template" in ranked
+
+
 def test_static_candidates_follow_decode_not_safe_parse() -> None:
     index, _dist = _world()
     public = public_api(index, ["vulnlib"])

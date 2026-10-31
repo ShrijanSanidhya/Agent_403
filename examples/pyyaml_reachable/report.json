@@ -1,0 +1,118 @@
+{
+  "tool": {
+    "name": "agent403",
+    "version": "0.1.0"
+  },
+  "project": "examples/pyyaml_reachable",
+  "generated_at": "2026-10-31T20:40:53.065589+00:00",
+  "llm": {
+    "enabled": true,
+    "backend": "ollama",
+    "model": "qwen2.5-coder:7b",
+    "available": true
+  },
+  "dependencies": [
+    {
+      "name": "pyyaml",
+      "version": "5.3.1",
+      "pinned": true
+    }
+  ],
+  "findings": [
+    {
+      "vuln_id": "GHSA-8q59-q68h-6hv4",
+      "aliases": [
+        "CVE-2020-14343",
+        "PYSEC-2021-142"
+      ],
+      "package": "pyyaml",
+      "version": "5.3.1",
+      "fixed_in": [
+        "5.4"
+      ],
+      "summary": "Improper Input Validation in PyYAML",
+      "verdict": "reachable",
+      "vulnerable_symbols": [
+        {
+          "symbol": "yaml.load",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        },
+        {
+          "symbol": "yaml.load_all",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        },
+        {
+          "symbol": "yaml.full_load",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        },
+        {
+          "symbol": "yaml.full_load_all",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        },
+        {
+          "symbol": "yaml.constructor.FullConstructor",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        },
+        {
+          "symbol": "yaml.constructor.UnsafeConstructor",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        },
+        {
+          "symbol": "yaml.cyaml.CFullLoader",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        },
+        {
+          "symbol": "yaml.cyaml.CUnsafeLoader",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+        }
+      ],
+      "evidence": {
+        "paths": [
+          [
+            {
+              "symbol": "main.main",
+              "file": "main.py",
+              "line": 4
+            },
+            {
+              "symbol": "config.load_config",
+              "file": "main.py",
+              "line": 5
+            },
+            {
+              "symbol": "yaml.full_load",
+              "file": "config.py",
+              "line": 6
+            }
+          ]
+        ],
+        "dynamic_sites": [],
+        "reasons": [
+          "call path found: main.main -> config.load_config -> yaml.full_load"
+        ]
+      },
+      "vex_status": "affected"
+    }
+  ],
+  "summary": {
+    "reachable": 1,
+    "not_affected": 0,
+    "uncertain": 0
+  }
+}

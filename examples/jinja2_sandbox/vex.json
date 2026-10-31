@@ -1,0 +1,140 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/agent403/fcbbaf5cad412d78ef63dd9ad924f09ecc40540f694141da21336ca68ce991d1",
+  "author": "agent403",
+  "timestamp": "2026-10-31T20:41:03.022658+00:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "GHSA-462w-v97r-4m45",
+        "aliases": [
+          "CVE-2019-10906",
+          "PYSEC-2019-217"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/jinja2_sandbox",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jinja2@2.10"
+            }
+          ]
+        }
+      ],
+      "status": "affected",
+      "action_statement": "Upgrade jinja2 to 2.10.1 or later"
+    },
+    {
+      "vulnerability": {
+        "name": "GHSA-cpwx-vrp4-4pq7",
+        "aliases": [
+          "CVE-2025-27516",
+          "PYSEC-2026-1471"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/jinja2_sandbox",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jinja2@2.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path",
+      "impact_statement": "no call path from project code to jinja2.filters.do_attr"
+    },
+    {
+      "vulnerability": {
+        "name": "GHSA-g3rq-g295-4j3m",
+        "aliases": [
+          "CVE-2020-28493",
+          "PYSEC-2021-66",
+          "SNYK-PYTHON-JINJA2-1012994"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/jinja2_sandbox",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jinja2@2.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path",
+      "impact_statement": "no call path from project code to jinja2.environment.TemplateExpression, jinja2.filters.do_urlize, jinja2.utils.urlize"
+    },
+    {
+      "vulnerability": {
+        "name": "GHSA-h5c8-rqwp-cp95",
+        "aliases": [
+          "CVE-2024-22195",
+          "PYSEC-2026-1473"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/jinja2_sandbox",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jinja2@2.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path",
+      "impact_statement": "no call path from project code to jinja2.filters.do_xmlattr"
+    },
+    {
+      "vulnerability": {
+        "name": "GHSA-h75v-3vvj-5mfj",
+        "aliases": [
+          "CVE-2024-34064",
+          "PYSEC-2026-1474"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/jinja2_sandbox",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jinja2@2.10"
+            }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path",
+      "impact_statement": "no call path from project code to jinja2.filters.do_xmlattr"
+    },
+    {
+      "vulnerability": {
+        "name": "GHSA-q2x7-8rv6-6q7h",
+        "aliases": [
+          "CVE-2024-56326",
+          "PYSEC-2026-1475"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/jinja2_sandbox",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/jinja2@2.10"
+            }
+          ]
+        }
+      ],
+      "status": "affected",
+      "action_statement": "Upgrade jinja2 to 3.1.5 or later"
+    }
+  ]
+}
