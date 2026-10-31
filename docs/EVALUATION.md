@@ -4,6 +4,7 @@
 |---|---|---|---|
 | alias_import | reachable | reachable | yes |
 | callback_ref | reachable | reachable | yes |
+| chained_call | reachable | reachable | yes |
 | class_method | reachable | reachable | yes |
 | dead_import | not_affected | not_affected | yes |
 | direct_call | reachable | reachable | yes |
@@ -16,7 +17,7 @@
 | transitive | reachable | reachable | yes |
 | unknown_receiver | uncertain | uncertain | yes |
 
-correct 13 / 13
+correct 14 / 14
 false reachable: 0
 missed reachable: 0
 wrongly marked safe: 0
