@@ -4,12 +4,12 @@
     "version": "0.1.0"
   },
   "project": "examples/jinja2_plain",
-  "generated_at": "2026-10-31T20:41:08.763080+00:00",
+  "generated_at": "2026-10-31T23:48:07.484428+00:00",
   "llm": {
     "enabled": true,
-    "backend": "ollama",
+    "backend": null,
     "model": "qwen2.5-coder:7b",
-    "available": true
+    "available": false
   },
   "dependencies": [
     {
@@ -36,38 +36,32 @@
         {
           "symbol": "jinja2.ext.AutoEscapeExtension",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.ImmutableSandboxedEnvironment",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedEnvironment",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedEscapeFormatter",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedFormatter",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedFormatterMixin",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+          "confidence": "high"
         }
       ],
       "evidence": {
@@ -96,8 +90,7 @@
         {
           "symbol": "jinja2.filters.do_attr",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function is vulnerable to sandbox breakout through the attr filter selecting the format method."
+          "confidence": "high"
         }
       ],
       "evidence": {
@@ -127,20 +120,17 @@
         {
           "symbol": "jinja2.environment.TemplateExpression",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is directly vulnerable to the ReDoS attack due to its use of regular expressions."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.filters.do_urlize",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function uses the `urlize` utility, which is vulnerable to ReDoS."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.utils.urlize",
           "source": "cache",
-          "confidence": "high",
-          "why": "This utility function is directly vulnerable to the ReDoS attack."
+          "confidence": "high"
         }
       ],
       "evidence": {
@@ -169,8 +159,7 @@
         {
           "symbol": "jinja2.filters.do_xmlattr",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function directly uses the `xmlattr` filter, which is vulnerable to HTML attribute injection when passing user input as keys."
+          "confidence": "high"
         }
       ],
       "evidence": {
@@ -199,8 +188,7 @@
         {
           "symbol": "jinja2.filters.do_xmlattr",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function directly accepts user input as keys, which can lead to HTML attribute injection vulnerabilities."
+          "confidence": "high"
         }
       ],
       "evidence": {
@@ -229,32 +217,27 @@
         {
           "symbol": "jinja2.sandbox.ImmutableSandboxedEnvironment",
           "source": "cache",
-          "confidence": "high",
-          "why": "This subclass of SandboxedEnvironment is vulnerable to indirect reference attacks."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedEnvironment",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class allows indirect references to methods, which can be exploited to bypass the sandbox."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedEscapeFormatter",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class allows indirect references to methods, which can be exploited to bypass the sandbox."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedFormatter",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class allows indirect references to methods, which can be exploited to bypass the sandbox."
+          "confidence": "high"
         },
         {
           "symbol": "jinja2.sandbox.SandboxedFormatterMixin",
           "source": "cache",
-          "confidence": "high",
-          "why": "This mixin allows indirect references to methods, which can be exploited to bypass the sandbox."
+          "confidence": "high"
         }
       ],
       "evidence": {
@@ -270,6 +253,8 @@
   "summary": {
     "reachable": 0,
     "not_affected": 6,
-    "uncertain": 0
+    "uncertain": 0,
+    "total": 6,
+    "noise_removed_pct": 100
   }
 }
