@@ -134,6 +134,26 @@ class Index:
                 return candidate
         return None
 
+    def subclasses_of(self, qualname: str) -> list[str]:
+        """Every indexed class that inherits from qualname, directly or further down."""
+        children: dict[str, list[str]] = {}
+        for name, bases in self.class_bases.items():
+            if name not in self.symbols:
+                continue
+            for base in bases:
+                children.setdefault(base, []).append(name)
+        found: list[str] = []
+        seen: set[str] = set()
+        stack = list(children.get(qualname, []))
+        while stack:
+            current = stack.pop()
+            if current in seen or current not in self.symbols:
+                continue
+            seen.add(current)
+            found.append(current)
+            stack.extend(children.get(current, []))
+        return sorted(found)
+
     def canonical(self, dotted: str) -> str:
         """Follow re-export aliases, longest-prefix first, at most 10 steps.
 
@@ -242,6 +262,7 @@ class _Indexer:
             self._define(tree, module, rel_file, is_package, kind)
             parsed.append((tree, module, rel_file))
         self._resolve_stars()
+        self._canonicalize_bases()
         for tree, module, rel_file in parsed:
             _Visitor(self.index, module, rel_file).run(tree)
 
@@ -351,6 +372,19 @@ class _Indexer:
                     if name in info.defs or name in info.aliases:
                         continue
                     info.aliases[name] = other.aliases.get(name, f"{target}.{name}")
+
+    def _canonicalize_bases(self) -> None:
+        """Store each base as the canonical class it names, once every class exists."""
+        resolved: dict[str, list[str]] = {}
+        for qualname, raws in self.index.class_bases.items():
+            module = self.index.module_of(qualname) or qualname.rsplit(".", 1)[0]
+            found: list[str] = []
+            for raw in raws:
+                canonical = _resolve_base(raw, module, self.index)
+                if canonical and canonical not in found:
+                    found.append(canonical)
+            resolved[qualname] = found
+        self.index.class_bases = resolved
 
 
 class _Visitor(ast.NodeVisitor):
@@ -576,13 +610,7 @@ class _Visitor(ast.NodeVisitor):
         return None
 
     def _bases(self, class_qual: str) -> list[str]:
-        module = self.index.module_of(class_qual) or self.module
-        found: list[str] = []
-        for raw in self.index.class_bases.get(class_qual, []):
-            resolved = _resolve_base(raw, module, self.index)
-            if resolved and resolved not in found:
-                found.append(resolved)
-        return found
+        return list(self.index.class_bases.get(class_qual, []))
 
     def _as_module(self, node: ast.AST) -> str | None:
         if isinstance(node, ast.Name):

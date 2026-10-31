@@ -6,6 +6,7 @@ Every model answer is checked against the real index. Invented names are rejecte
 
 import hashlib
 import json
+import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,13 +31,17 @@ from agent403.pypi import DistSource
 
 SYSTEM_PROMPT = (
     "You are a Python security engineer. You identify which PUBLIC functions or classes "
-    "of a library a user must call to trigger a vulnerability. Answer with JSON only."
+    "of a library a user must call to trigger a vulnerability. "
+    "If the advisory is an escape from a protective wrapper, that wrapper and its subclasses "
+    "are vulnerable entry points, not safe alternatives. Answer with JSON only."
 )
+_PROMPT_PUBLIC = 40
 _MAX_CANDIDATES = 60
 _MAX_DEPTH = 6
 _MAX_DETAILS = 3000
 _MAX_DIFF = 5000
-_MAX_PUBLIC = 200
+_MAX_PUBLIC = 300
+_SKIP_MODULES = {"tests", "test", "compat", "vendored"}
 
 
 @dataclass
@@ -86,11 +91,12 @@ def resolve_symbols(
         return _none()
     changes = collect_changes(advisory, index, dist, http)
     imports = list(dist.import_names)
-    public = public_api(index, imports)
-    candidates = candidate_symbols(index, imports, changes.existing, public)
+    text = f"{advisory.summary}\n{advisory.details}"
+    public = public_api(index, imports, text)
+    candidates = candidate_symbols(index, imports, changes.existing, public, text)
     if llm is not None:
         try:
-            chosen = _ask_model(llm, advisory, dist, changes, candidates, public)
+            chosen = _ask_model(llm, advisory, dist, changes, candidates, public, index)
         except LLMError:
             chosen = None
         if chosen is not None:
@@ -145,8 +151,8 @@ def collect_changes(
     return ChangeSet(existing, context, "\n".join(excerpts), used)
 
 
-def public_api(index: Index, import_names: list[str]) -> list[str]:
-    """Names a user can import from the top-level package, canonicalized."""
+def public_api(index: Index, import_names: list[str], text: str = "") -> list[str]:
+    """Public names of the package, relevance to the advisory first."""
     names: list[str] = []
     for root in import_names:
         info = index.modules.get(root)
@@ -162,7 +168,19 @@ def public_api(index: Index, import_names: list[str]) -> list[str]:
             canonical = index.canonical(target)
             if canonical not in names and not _leaf(canonical).startswith("_"):
                 names.append(canonical)
-    return names
+    for module, info in index.modules.items():
+        if not _under(module, import_names) or not _public_module(module, info.file):
+            continue
+        for name in sorted(info.defs):
+            if name.startswith("_"):
+                continue
+            qual = f"{module}.{name}"
+            symbol = index.symbols.get(qual)
+            if symbol is None or symbol.kind not in {"class", "function"}:
+                continue
+            if qual not in names:
+                names.append(qual)
+    return _rank(names, text, import_names)[:_MAX_PUBLIC]
 
 
 def candidate_symbols(
@@ -170,9 +188,11 @@ def candidate_symbols(
     import_names: list[str],
     changed: list[str],
     public: list[str],
+    text: str = "",
 ) -> list[str]:
-    """Public symbols that can reach a changed function inside this package."""
-    targets = set(changed)
+    """Public symbols that can reach a changed function or an affected class."""
+    affected = _affected_classes(index, changed)
+    targets = set(changed) | affected
     found: list[str] = []
     for name in public:
         seeds = _seeds(index, name)
@@ -185,8 +205,29 @@ def candidate_symbols(
         symbol = index.symbols.get(owner)
         if symbol is not None and symbol.kind == "class" and not _leaf(owner).startswith("_"):
             _add(found, owner)
-    found.sort()
-    return found[:_MAX_CANDIDATES]
+    for name in sorted(affected):
+        _add(found, name)
+    return _rank(found, text, import_names)[:_MAX_CANDIDATES]
+
+
+def _affected_classes(index: Index, changed: list[str]) -> set[str]:
+    """Classes that own a changed method, plus every subclass of those classes."""
+    owners: set[str] = set()
+    for name in changed:
+        owner = name.rsplit(".", 1)[0]
+        symbol = index.symbols.get(owner)
+        if symbol is not None and symbol.kind == "class":
+            owners.add(owner)
+        if index.symbols.get(name) is not None and index.symbols[name].kind == "class":
+            owners.add(name)
+    affected: set[str] = set()
+    for owner in owners:
+        if not _leaf(owner).startswith("_"):
+            affected.add(owner)
+        for child in index.subclasses_of(owner):
+            if not _leaf(child).startswith("_"):
+                affected.add(child)
+    return affected
 
 
 def _seeds(index: Index, name: str) -> list[str]:
@@ -226,8 +267,9 @@ def _ask_model(
     changes: ChangeSet,
     candidates: list[str],
     public: list[str],
+    index: Index,
 ) -> dict[str, object]:
-    user = _user_prompt(advisory, dist, changes, candidates, public)
+    user = _user_prompt(advisory, dist, changes, candidates, public, index)
     return llm.complete_json(SYSTEM_PROMPT, user)
 
 
@@ -237,15 +279,47 @@ def _user_prompt(
     changes: ChangeSet,
     candidates: list[str],
     public: list[str],
+    index: Index,
 ) -> str:
     changed = [*changes.existing, *changes.context]
     details = advisory.details[:_MAX_DETAILS]
     diff = changes.diff_text[:_MAX_DIFF]
+    roots = list(dist.import_names)
+    focus = ", ".join(_focus_words(advisory.summary, advisory.details, roots))
+    shown = public[:_PROMPT_PUBLIC]
+    summary_classes = _summary_classes(index, public, advisory.summary, roots)
     lines = [
         f"advisory: {advisory.id}",
         f"aliases: {', '.join(advisory.aliases)}",
         f"package: {dist.name}=={dist.version}",
         f"summary: {advisory.summary}",
+        f"focus words: {focus}",
+        *(
+            [
+                "These classes match the summary and are vulnerable entry points:",
+                *[f"- {name}" for name in summary_classes],
+            ]
+            if summary_classes
+            else []
+        ),
+        *(
+            ["Every class in that list is vulnerable. Do not put any of them in safe_symbols."]
+            if summary_classes
+            else []
+        ),
+        "Rules: choose ONLY names from the candidate or public API lists.",
+        "Prefer symbols whose names contain a focus word.",
+        "Choose library entry points a user calls, not builtins such as str.format.",
+        "If the advisory is an escape from a protective wrapper, that wrapper is vulnerable.",
+        "Do not put that wrapper, or a subclass of it, in safe_symbols.",
+        "Do not choose a symbol only because untrusted data could be passed to it.",
+        "A line like 'Name (subclass of Base)' means Name inherits Base's changed behavior.",
+        "If a class is vulnerable, its subclasses are vulnerable too",
+        "unless the diff shows they override that behavior.",
+        "Do not list a subclass of a vulnerable class as a safe alternative.",
+        "Prefer the functions and classes a user calls.",
+        "List safe alternatives the user should call instead.",
+        'If unsure set confidence to "low".',
         f"details: {details}",
         f"fixed versions: {', '.join(advisory.fixed_versions)}",
         "functions changed by the fix:",
@@ -253,13 +327,9 @@ def _user_prompt(
         "diff excerpt:",
         diff or "(no diff available)",
         "static candidates (prefer these entry points):",
-        *([f"- {name}" for name in candidates] or ["- none"]),
-        "public API:",
-        *([f"- {name}" for name in public[:_MAX_PUBLIC]] or ["- none"]),
-        "Rules: choose ONLY names from the candidate or public API lists.",
-        "Prefer the entry points a user calls.",
-        "List safe alternatives the user should call instead.",
-        'If unsure set confidence to "low".',
+        *([_candidate_line(index, name) for name in candidates] or ["- none"]),
+        f"public API, most relevant first ({len(shown)} of {len(public)}):",
+        *([_candidate_line(index, name) for name in shown] or ["- none"]),
         'Return {"vulnerable_symbols":[{"symbol":"...","why":"..."}],'
         '"safe_symbols":[{"symbol":"...","why":"..."}],'
         '"confidence":"high|medium|low"}',
@@ -289,10 +359,18 @@ def _validated(
         if accepted not in kept:
             kept.append(accepted)
             why.append({"symbol": accepted, "why": reason, "role": "vulnerable"})
+    summary_classes = set(
+        _summary_classes(index, [*candidates, *public], advisory.summary, import_names)
+    )
     for symbol, reason in _items(payload.get("safe_symbols")):
         accepted = _accept(symbol, index, import_names)
         if accepted is None:
             rejected.append(symbol)
+            continue
+        if accepted in summary_classes:
+            if accepted not in kept:
+                kept.append(accepted)
+                why.append({"symbol": accepted, "why": reason, "role": "vulnerable"})
             continue
         if accepted not in safe:
             safe.append(accepted)
@@ -513,6 +591,134 @@ def _add(found: list[str], name: str) -> None:
 
 def _leaf(name: str) -> str:
     return name.rsplit(".", 1)[-1]
+
+
+def _candidate_line(index: Index, name: str) -> str:
+    symbol = index.symbols.get(name)
+    bases = index.class_bases.get(name) or []
+    if symbol is None or symbol.kind != "class" or not bases:
+        return f"- {name}"
+    return f"- {name} (subclass of {', '.join(bases)})"
+
+
+def _public_module(module: str, file: str) -> bool:
+    parts = module.split(".")
+    if any(part.startswith("_") or part in _SKIP_MODULES for part in parts):
+        return False
+    text = file.replace("\\", "/")
+    markers = ("tests/", "compat/", "vendored/")
+    return not any(marker in f"/{text}" for marker in markers)
+
+
+def _rank(names: list[str], text: str, roots: list[str] | None = None) -> list[str]:
+    ignore: set[str] = set()
+    for root in roots or []:
+        ignore.add(root.lower())
+        ignore.update(_name_parts(root))
+    words = _words(text) - ignore
+
+    def key(name: str) -> tuple[int, str]:
+        return (0 if _relevant(name, words) else 1, name)
+
+    return sorted(names, key=key)
+
+
+_STOP_WORDS = {
+    "about",
+    "after",
+    "allows",
+    "before",
+    "code",
+    "could",
+    "detail",
+    "from",
+    "have",
+    "however",
+    "input",
+    "issue",
+    "method",
+    "other",
+    "python",
+    "release",
+    "string",
+    "that",
+    "their",
+    "there",
+    "these",
+    "this",
+    "used",
+    "user",
+    "using",
+    "when",
+    "which",
+    "with",
+}
+
+
+def _summary_classes(index: Index, public: list[str], summary: str, roots: list[str]) -> list[str]:
+    """Public classes whose names contain a word from the advisory summary."""
+    ignore: set[str] = set()
+    for root in roots:
+        ignore.add(root.lower())
+        ignore.update(_name_parts(root))
+    words = _words(summary) - ignore
+    found: list[str] = []
+    for name in public:
+        symbol = index.symbols.get(name)
+        if symbol is None or symbol.kind != "class" or not _relevant(name, words):
+            continue
+        if name not in found:
+            found.append(name)
+    return found[:8]
+
+
+def _focus_words(summary: str, details: str, roots: list[str]) -> list[str]:
+    ignore = set()
+    for root in roots:
+        ignore.add(root.lower())
+        ignore.update(_name_parts(root))
+    summary_words = _words(summary) - ignore
+    detail_words = _words(details) - ignore
+
+    def order(word: str) -> tuple[int, int, str]:
+        return (0 if "_" in word else 1, -len(word), word)
+
+    first = sorted(summary_words, key=order)
+    rest = sorted(detail_words - summary_words, key=order)
+    return [*first, *rest][:8]
+
+
+def _words(text: str) -> set[str]:
+    """Advisory words worth matching. Identifiers count; common English does not."""
+    found: set[str] = set()
+    for token in re.findall(r"[A-Za-z_][A-Za-z0-9_]*", text):
+        lower = token.lower()
+        if "_" in token:
+            found.add(lower)
+            found.update(part for part in lower.split("_") if len(part) >= 4)
+            continue
+        if len(lower) >= 4 and lower not in _STOP_WORDS:
+            found.add(lower)
+    return found
+
+
+def _name_parts(name: str) -> list[str]:
+    parts: list[str] = []
+    for token in name.replace(".", "_").split("_"):
+        parts.extend(re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])|\d+", token))
+    return [part.lower() for part in parts if part]
+
+
+def _relevant(name: str, words: set[str]) -> bool:
+    parts = _name_parts(name)
+    for word in words:
+        for part in parts:
+            if part == word:
+                return True
+            rest = part[len(word) :]
+            if part.startswith(word) and rest in {"s", "es", "ed", "er", "ing"}:
+                return True
+    return False
 
 
 def _under(name: str, roots: list[str]) -> bool:

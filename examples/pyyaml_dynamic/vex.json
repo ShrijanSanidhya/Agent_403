@@ -1,0 +1,30 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/agent403/b756e01abf18d4c223a52929009e02ebd6aed64ea25e397dc1a10aecc6f9ff0c",
+  "author": "agent403",
+  "timestamp": "2026-10-31T20:40:57.653950+00:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "GHSA-8q59-q68h-6hv4",
+        "aliases": [
+          "CVE-2020-14343",
+          "PYSEC-2021-142"
+        ]
+      },
+      "products": [
+        {
+          "@id": "pkg:pypi/pyyaml_dynamic",
+          "subcomponents": [
+            {
+              "@id": "pkg:pypi/pyyaml@5.3.1"
+            }
+          ]
+        }
+      ],
+      "status": "under_investigation",
+      "status_notes": "dynamic getattr at main.py:9"
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "tool": {
+    "name": "agent403",
+    "version": "0.1.0"
+  },
+  "project": "examples/jinja2_sandbox",
+  "generated_at": "2026-10-31T20:41:03.022658+00:00",
+  "llm": {
+    "enabled": true,
+    "backend": "ollama",
+    "model": "qwen2.5-coder:7b",
+    "available": true
+  },
+  "dependencies": [
+    {
+      "name": "jinja2",
+      "version": "2.10",
+      "pinned": true
+    }
+  ],
+  "findings": [
+    {
+      "vuln_id": "GHSA-462w-v97r-4m45",
+      "aliases": [
+        "CVE-2019-10906",
+        "PYSEC-2019-217"
+      ],
+      "package": "jinja2",
+      "version": "2.10",
+      "fixed_in": [
+        "2.10.1"
+      ],
+      "summary": "Jinja2 sandbox escape via string formatting",
+      "verdict": "reachable",
+      "vulnerable_symbols": [
+        {
+          "symbol": "jinja2.ext.AutoEscapeExtension",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+        },
+        {
+          "symbol": "jinja2.sandbox.ImmutableSandboxedEnvironment",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedEnvironment",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedEscapeFormatter",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedFormatter",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedFormatterMixin",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is a subclass of a vulnerable class and inherits its changed behavior."
+        }
+      ],
+      "evidence": {
+        "paths": [
+          [
+            {
+              "symbol": "main.main",
+              "file": "main.py",
+              "line": 4
+            },
+            {
+              "symbol": "jinja2.sandbox.SandboxedEnvironment",
+              "file": "main.py",
+              "line": 5
+            }
+          ]
+        ],
+        "dynamic_sites": [],
+        "reasons": [
+          "call path found: main.main -> jinja2.sandbox.SandboxedEnvironment"
+        ]
+      },
+      "vex_status": "affected"
+    },
+    {
+      "vuln_id": "GHSA-cpwx-vrp4-4pq7",
+      "aliases": [
+        "CVE-2025-27516",
+        "PYSEC-2026-1471"
+      ],
+      "package": "jinja2",
+      "version": "2.10",
+      "fixed_in": [
+        "3.1.6"
+      ],
+      "summary": "Jinja2 vulnerable to sandbox breakout through attr filter selecting format method",
+      "verdict": "not_affected",
+      "vulnerable_symbols": [
+        {
+          "symbol": "jinja2.filters.do_attr",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function is vulnerable to sandbox breakout through the attr filter selecting the format method."
+        }
+      ],
+      "evidence": {
+        "paths": [],
+        "dynamic_sites": [],
+        "reasons": [
+          "no call path from project code to jinja2.filters.do_attr"
+        ]
+      },
+      "vex_status": "not_affected"
+    },
+    {
+      "vuln_id": "GHSA-g3rq-g295-4j3m",
+      "aliases": [
+        "CVE-2020-28493",
+        "PYSEC-2021-66",
+        "SNYK-PYTHON-JINJA2-1012994"
+      ],
+      "package": "jinja2",
+      "version": "2.10",
+      "fixed_in": [
+        "2.11.3"
+      ],
+      "summary": "Regular Expression Denial of Service (ReDoS) in Jinja2",
+      "verdict": "not_affected",
+      "vulnerable_symbols": [
+        {
+          "symbol": "jinja2.environment.TemplateExpression",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class is directly vulnerable to the ReDoS attack due to its use of regular expressions."
+        },
+        {
+          "symbol": "jinja2.filters.do_urlize",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function uses the `urlize` utility, which is vulnerable to ReDoS."
+        },
+        {
+          "symbol": "jinja2.utils.urlize",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This utility function is directly vulnerable to the ReDoS attack."
+        }
+      ],
+      "evidence": {
+        "paths": [],
+        "dynamic_sites": [],
+        "reasons": [
+          "no call path from project code to jinja2.environment.TemplateExpression, jinja2.filters.do_urlize, jinja2.utils.urlize"
+        ]
+      },
+      "vex_status": "not_affected"
+    },
+    {
+      "vuln_id": "GHSA-h5c8-rqwp-cp95",
+      "aliases": [
+        "CVE-2024-22195",
+        "PYSEC-2026-1473"
+      ],
+      "package": "jinja2",
+      "version": "2.10",
+      "fixed_in": [
+        "3.1.3"
+      ],
+      "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+      "verdict": "not_affected",
+      "vulnerable_symbols": [
+        {
+          "symbol": "jinja2.filters.do_xmlattr",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function directly uses the `xmlattr` filter, which is vulnerable to HTML attribute injection when passing user input as keys."
+        }
+      ],
+      "evidence": {
+        "paths": [],
+        "dynamic_sites": [],
+        "reasons": [
+          "no call path from project code to jinja2.filters.do_xmlattr"
+        ]
+      },
+      "vex_status": "not_affected"
+    },
+    {
+      "vuln_id": "GHSA-h75v-3vvj-5mfj",
+      "aliases": [
+        "CVE-2024-34064",
+        "PYSEC-2026-1474"
+      ],
+      "package": "jinja2",
+      "version": "2.10",
+      "fixed_in": [
+        "3.1.4"
+      ],
+      "summary": "Jinja vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter",
+      "verdict": "not_affected",
+      "vulnerable_symbols": [
+        {
+          "symbol": "jinja2.filters.do_xmlattr",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This function directly accepts user input as keys, which can lead to HTML attribute injection vulnerabilities."
+        }
+      ],
+      "evidence": {
+        "paths": [],
+        "dynamic_sites": [],
+        "reasons": [
+          "no call path from project code to jinja2.filters.do_xmlattr"
+        ]
+      },
+      "vex_status": "not_affected"
+    },
+    {
+      "vuln_id": "GHSA-q2x7-8rv6-6q7h",
+      "aliases": [
+        "CVE-2024-56326",
+        "PYSEC-2026-1475"
+      ],
+      "package": "jinja2",
+      "version": "2.10",
+      "fixed_in": [
+        "3.1.5"
+      ],
+      "summary": "Jinja has a sandbox breakout through indirect reference to format method",
+      "verdict": "reachable",
+      "vulnerable_symbols": [
+        {
+          "symbol": "jinja2.sandbox.ImmutableSandboxedEnvironment",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This subclass of SandboxedEnvironment is vulnerable to indirect reference attacks."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedEnvironment",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class allows indirect references to methods, which can be exploited to bypass the sandbox."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedEscapeFormatter",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class allows indirect references to methods, which can be exploited to bypass the sandbox."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedFormatter",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This class allows indirect references to methods, which can be exploited to bypass the sandbox."
+        },
+        {
+          "symbol": "jinja2.sandbox.SandboxedFormatterMixin",
+          "source": "cache",
+          "confidence": "high",
+          "why": "This mixin allows indirect references to methods, which can be exploited to bypass the sandbox."
+        }
+      ],
+      "evidence": {
+        "paths": [
+          [
+            {
+              "symbol": "main.main",
+              "file": "main.py",
+              "line": 4
+            },
+            {
+              "symbol": "jinja2.sandbox.SandboxedEnvironment",
+              "file": "main.py",
+              "line": 5
+            }
+          ]
+        ],
+        "dynamic_sites": [],
+        "reasons": [
+          "call path found: main.main -> jinja2.sandbox.SandboxedEnvironment"
+        ]
+      },
+      "vex_status": "affected"
+    }
+  ],
+  "summary": {
+    "reachable": 2,
+    "not_affected": 4,
+    "uncertain": 0
+  }
+}

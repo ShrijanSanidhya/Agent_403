@@ -1,0 +1,296 @@
+{
+  "GHSA-462w-v97r-4m45": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.ext.AutoEscapeExtension",
+      "jinja2.sandbox.ImmutableSandboxedEnvironment",
+      "jinja2.sandbox.SandboxedEnvironment",
+      "jinja2.sandbox.SandboxedEscapeFormatter",
+      "jinja2.sandbox.SandboxedFormatter",
+      "jinja2.sandbox.SandboxedFormatterMixin"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:34:50.082567+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "66d16ad0ae19b354bd0713b4ffb53e0470922e456aa579d58f38ba0e06a5be3b",
+    "fix_refs_used": [],
+    "rejected": []
+  },
+  "GHSA-cpwx-vrp4-4pq7": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.filters.do_attr"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:35:29.004619+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "fe0ab362a626292b7469d5403c8da30b9e462dd5d8d9f3fc31aa3d75946ac7c4",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/90457bbf33b8662926ae65cdde4c4c32e756e403.diff"
+    ],
+    "rejected": []
+  },
+  "GHSA-g3rq-g295-4j3m": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.environment.TemplateExpression",
+      "jinja2.filters.do_urlize",
+      "jinja2.utils.urlize"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:36:09.450076+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "847fc47f317ef7a41365a3a5523aab5753db77b2dcb04d1dd681d016782dc361",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/pull/1343.diff",
+      "https://github.com/pallets/jinja/commit/15ef8f09b659f9100610583938005a7a10472d4d.diff"
+    ],
+    "rejected": [
+      "markdown",
+      "request.setTimeout",
+      "limitProcessMemory"
+    ]
+  },
+  "GHSA-h5c8-rqwp-cp95": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.filters.do_xmlattr"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:36:28.391543+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "9b655c3f13b20f6daf457431aefeb9ed087cd385f0f53a9d4b76dfe4a274b956",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/716795349a41d4983a9a4771f7d883c96ea17be7.diff"
+    ],
+    "rejected": []
+  },
+  "GHSA-h75v-3vvj-5mfj": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.filters.do_xmlattr"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:36:47.253235+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "ea31fccc53438b645145ccdd9854c383843237c4b2b2866b8b8b1242cdbd4697",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/0668239dc6b44ef38e7a6c9f91f312fd4ca581cb.diff"
+    ],
+    "rejected": []
+  },
+  "GHSA-q2x7-8rv6-6q7h": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.sandbox.ImmutableSandboxedEnvironment",
+      "jinja2.sandbox.SandboxedEnvironment",
+      "jinja2.sandbox.SandboxedEscapeFormatter",
+      "jinja2.sandbox.SandboxedFormatter",
+      "jinja2.sandbox.SandboxedFormatterMixin"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:37:37.715740+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "67d566126b18c3063e2129c816a06c7101bd5e2052e95b976d05abe0726c94d2",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/48b0687e05a5466a91cd5812d604fa37ad0943b4.diff"
+    ],
+    "rejected": [
+      "jinja2.sandbox.ContextReference",
+      "jinja2.sandbox.BlockReference",
+      "jinja2.sandbox.TemplateReference"
+    ]
+  },
+  "PYSEC-2019-217": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.sandbox.SandboxedEnvironment",
+      "jinja2.sandbox.SandboxedFormatterMixin"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:37:53.690699+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "9fb6c6b26c894f81dcd510094df85ad8be81efbf6ba683a2d46c916c809d21cd",
+    "fix_refs_used": [],
+    "rejected": [
+      "markupsafe.escape"
+    ]
+  },
+  "PYSEC-2021-66": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.utils.urlize"
+    ],
+    "safe_symbols": [
+      "jinja2.filters.do_urlize"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:38:18.571887+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "e277c2e943e6bd08f1b1e591b76d36a2c5aa12eb1ea7df01c3845a1c54567376",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/pull/1343.diff"
+    ],
+    "rejected": []
+  },
+  "PYSEC-2026-1471": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.filters.do_attr"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:38:34.740514+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "7891030301e1f6241927d03b1ceca4070c6b8461cd312fdc9881454951edaa91",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/90457bbf33b8662926ae65cdde4c4c32e756e403.diff"
+    ],
+    "rejected": []
+  },
+  "PYSEC-2026-1473": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.filters.do_xmlattr"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:38:48.990751+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "3e243c92adc80780658232287a456a7116be5a4dbd416e3bdaf39f4f30389e94",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/716795349a41d4983a9a4771f7d883c96ea17be7.diff"
+    ],
+    "rejected": []
+  },
+  "PYSEC-2026-1474": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.filters.do_xmlattr"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:39:06.777852+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "8681e5e9ccfb73c55d3e3a82e699f85dafc829313819d2b77a60ddafaa7699cf",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/0668239dc6b44ef38e7a6c9f91f312fd4ca581cb.diff"
+    ],
+    "rejected": []
+  },
+  "PYSEC-2026-1475": {
+    "package": "jinja2",
+    "symbols": [
+      "jinja2.nodes.ContextReference",
+      "jinja2.runtime.BlockReference",
+      "jinja2.runtime.TemplateReference",
+      "jinja2.sandbox.ImmutableSandboxedEnvironment",
+      "jinja2.sandbox.SandboxedEnvironment",
+      "jinja2.sandbox.SandboxedEscapeFormatter",
+      "jinja2.sandbox.SandboxedFormatter",
+      "jinja2.sandbox.SandboxedFormatterMixin"
+    ],
+    "safe_symbols": [],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:39:42.254053+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "5af5c9a3f203901c4400dec581b0072d0789f5dbcf51456690f511d88e67b3fe",
+    "fix_refs_used": [
+      "https://github.com/pallets/jinja/commit/48b0687e05a5466a91cd5812d604fa37ad0943b4.diff"
+    ],
+    "rejected": []
+  },
+  "GHSA-8q59-q68h-6hv4": {
+    "package": "pyyaml",
+    "symbols": [
+      "yaml.load",
+      "yaml.load_all",
+      "yaml.full_load",
+      "yaml.full_load_all",
+      "yaml.constructor.FullConstructor",
+      "yaml.constructor.UnsafeConstructor",
+      "yaml.cyaml.CFullLoader",
+      "yaml.cyaml.CUnsafeLoader"
+    ],
+    "safe_symbols": [
+      "yaml.safe_load",
+      "yaml.safe_load_all",
+      "yaml.constructor.SafeConstructor",
+      "yaml.cyaml.CSafeLoader"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:40:12.066240+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "fff92d28d4b68fa66c2409a5998ba9cb69ce0c374d43100414b522414c156c79",
+    "fix_refs_used": [
+      "https://github.com/yaml/pyyaml/commit/a001f2782501ad2d24986959f0239a354675f9dc.diff"
+    ],
+    "rejected": []
+  },
+  "PYSEC-2021-142": {
+    "package": "pyyaml",
+    "symbols": [
+      "yaml.full_load",
+      "yaml.loader.FullLoader"
+    ],
+    "safe_symbols": [
+      "yaml.safe_load",
+      "yaml.loader.SafeLoader"
+    ],
+    "confidence": "high",
+    "generated_by": "qwen2.5-coder:7b",
+    "generated_at": "2026-10-31T20:40:27.445313+00:00",
+    "reviewed": false,
+    "notes": "",
+    "backend": "ollama",
+    "inputs_sha256": "63e2c6d6055e20c60b6336165ac1a8cef8aeba5c76938e073146bb7c5f8e645b",
+    "fix_refs_used": [],
+    "rejected": []
+  }
+}
