@@ -58,6 +58,15 @@ This is the real output of `agent403 scan examples/pyyaml_reachable -v`, saved i
 
 The full file also lists each symbol the model kept and each symbol it marked safe.
 
+## Use in CI
+
+```yaml
+- run: pip install git+https://github.com/ShrijanSanidhya/Agent_403.git
+- run: agent403 scan . --vex-out vex.json
+```
+
+The job fails (exit 1) when a vulnerable function is reachable.
+
 ## Using the open model
 
 ```bash

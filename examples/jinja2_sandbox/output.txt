@@ -27,92 +27,43 @@
   main.main  (main.py:4)
   -> jinja2.sandbox.SandboxedEnvironment  (main.py:5)
 2 reachable, 0 uncertain, 4 not affected
+📊 6 advisories found by package-level scanning -> 2 actually reachable (67% of 
+alerts need no action)
+🔧 Fix: upgrade jinja2 to 2.10.1 or later (GHSA-462w-v97r-4m45)
+🔧 Fix: upgrade jinja2 to 3.1.5 or later (GHSA-q2x7-8rv6-6q7h)
 GHSA-462w-v97r-4m45:
   call path found: main.main -> jinja2.sandbox.SandboxedEnvironment
-  jinja2.ext.AutoEscapeExtension (cache, high) — This class is a subclass of a 
-vulnerable class and inherits its changed behavior.
-  jinja2.sandbox.ImmutableSandboxedEnvironment (cache, high) — This class is a 
-subclass of a vulnerable class and inherits its changed behavior.
-  jinja2.sandbox.SandboxedEnvironment (cache, high) — This class is a subclass 
-of a vulnerable class and inherits its changed behavior.
-  jinja2.sandbox.SandboxedEscapeFormatter (cache, high) — This class is a 
-subclass of a vulnerable class and inherits its changed behavior.
-  jinja2.sandbox.SandboxedFormatter (cache, high) — This class is a subclass of 
-a vulnerable class and inherits its changed behavior.
-  jinja2.sandbox.SandboxedFormatterMixin (cache, high) — This class is a 
-subclass of a vulnerable class and inherits its changed behavior.
-  vulnerable: jinja2.ext.AutoEscapeExtension — This class is a subclass of a 
-vulnerable class and inherits its changed behavior.
-  vulnerable: jinja2.sandbox.ImmutableSandboxedEnvironment — This class is a 
-subclass of a vulnerable class and inherits its changed behavior.
-  vulnerable: jinja2.sandbox.SandboxedEnvironment — This class is a subclass of 
-a vulnerable class and inherits its changed behavior.
-  vulnerable: jinja2.sandbox.SandboxedEscapeFormatter — This class is a subclass
-of a vulnerable class and inherits its changed behavior.
-  vulnerable: jinja2.sandbox.SandboxedFormatter — This class is a subclass of a 
-vulnerable class and inherits its changed behavior.
-  vulnerable: jinja2.sandbox.SandboxedFormatterMixin — This class is a subclass 
-of a vulnerable class and inherits its changed behavior.
+  jinja2.ext.AutoEscapeExtension (cache, high)
+  jinja2.sandbox.ImmutableSandboxedEnvironment (cache, high)
+  jinja2.sandbox.SandboxedEnvironment (cache, high)
+  jinja2.sandbox.SandboxedEscapeFormatter (cache, high)
+  jinja2.sandbox.SandboxedFormatter (cache, high)
+  jinja2.sandbox.SandboxedFormatterMixin (cache, high)
 GHSA-cpwx-vrp4-4pq7:
   no call path from project code to jinja2.filters.do_attr
-  jinja2.filters.do_attr (cache, high) — This function is vulnerable to sandbox 
-breakout through the attr filter selecting the format method.
-  vulnerable: jinja2.filters.do_attr — This function is vulnerable to sandbox 
-breakout through the attr filter selecting the format method.
+  jinja2.filters.do_attr (cache, high)
 GHSA-g3rq-g295-4j3m:
   no call path from project code to jinja2.environment.TemplateExpression, 
 jinja2.filters.do_urlize, jinja2.utils.urlize
-  jinja2.environment.TemplateExpression (cache, high) — This class is directly 
-vulnerable to the ReDoS attack due to its use of regular expressions.
-  jinja2.filters.do_urlize (cache, high) — This function uses the `urlize` 
-utility, which is vulnerable to ReDoS.
-  jinja2.utils.urlize (cache, high) — This utility function is directly 
-vulnerable to the ReDoS attack.
-  vulnerable: jinja2.environment.TemplateExpression — This class is directly 
-vulnerable to the ReDoS attack due to its use of regular expressions.
-  vulnerable: jinja2.filters.do_urlize — This function uses the `urlize` 
-utility, which is vulnerable to ReDoS.
-  vulnerable: jinja2.utils.urlize — This utility function is directly vulnerable
-to the ReDoS attack.
+  jinja2.environment.TemplateExpression (cache, high)
+  jinja2.filters.do_urlize (cache, high)
+  jinja2.utils.urlize (cache, high)
   rejected markdown
   rejected request.setTimeout
   rejected limitProcessMemory
 GHSA-h5c8-rqwp-cp95:
   no call path from project code to jinja2.filters.do_xmlattr
-  jinja2.filters.do_xmlattr (cache, high) — This function directly uses the 
-`xmlattr` filter, which is vulnerable to HTML attribute injection when passing 
-user input as keys.
-  vulnerable: jinja2.filters.do_xmlattr — This function directly uses the 
-`xmlattr` filter, which is vulnerable to HTML attribute injection when passing 
-user input as keys.
+  jinja2.filters.do_xmlattr (cache, high)
 GHSA-h75v-3vvj-5mfj:
   no call path from project code to jinja2.filters.do_xmlattr
-  jinja2.filters.do_xmlattr (cache, high) — This function directly accepts user 
-input as keys, which can lead to HTML attribute injection vulnerabilities.
-  vulnerable: jinja2.filters.do_xmlattr — This function directly accepts user 
-input as keys, which can lead to HTML attribute injection vulnerabilities.
+  jinja2.filters.do_xmlattr (cache, high)
 GHSA-q2x7-8rv6-6q7h:
   call path found: main.main -> jinja2.sandbox.SandboxedEnvironment
-  jinja2.sandbox.ImmutableSandboxedEnvironment (cache, high) — This subclass of 
-SandboxedEnvironment is vulnerable to indirect reference attacks.
-  jinja2.sandbox.SandboxedEnvironment (cache, high) — This class allows indirect
-references to methods, which can be exploited to bypass the sandbox.
-  jinja2.sandbox.SandboxedEscapeFormatter (cache, high) — This class allows 
-indirect references to methods, which can be exploited to bypass the sandbox.
-  jinja2.sandbox.SandboxedFormatter (cache, high) — This class allows indirect 
-references to methods, which can be exploited to bypass the sandbox.
-  jinja2.sandbox.SandboxedFormatterMixin (cache, high) — This mixin allows 
-indirect references to methods, which can be exploited to bypass the sandbox.
-  vulnerable: jinja2.sandbox.ImmutableSandboxedEnvironment — This subclass of 
-SandboxedEnvironment is vulnerable to indirect reference attacks.
-  vulnerable: jinja2.sandbox.SandboxedEnvironment — This class allows indirect 
-references to methods, which can be exploited to bypass the sandbox.
-  vulnerable: jinja2.sandbox.SandboxedEscapeFormatter — This class allows 
-indirect references to methods, which can be exploited to bypass the sandbox.
-  vulnerable: jinja2.sandbox.SandboxedFormatter — This class allows indirect 
-references to methods, which can be exploited to bypass the sandbox.
-  vulnerable: jinja2.sandbox.SandboxedFormatterMixin — This mixin allows 
-indirect references to methods, which can be exploited to bypass the sandbox.
+  jinja2.sandbox.ImmutableSandboxedEnvironment (cache, high)
+  jinja2.sandbox.SandboxedEnvironment (cache, high)
+  jinja2.sandbox.SandboxedEscapeFormatter (cache, high)
+  jinja2.sandbox.SandboxedFormatter (cache, high)
+  jinja2.sandbox.SandboxedFormatterMixin (cache, high)
   rejected jinja2.sandbox.ContextReference
   rejected jinja2.sandbox.BlockReference
   rejected jinja2.sandbox.TemplateReference

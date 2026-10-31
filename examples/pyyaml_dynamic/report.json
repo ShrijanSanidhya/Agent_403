@@ -4,12 +4,12 @@
     "version": "0.1.0"
   },
   "project": "examples/pyyaml_dynamic",
-  "generated_at": "2026-10-31T20:40:57.653950+00:00",
+  "generated_at": "2026-10-31T23:47:53.227699+00:00",
   "llm": {
     "enabled": true,
-    "backend": "ollama",
+    "backend": null,
     "model": "qwen2.5-coder:7b",
-    "available": true
+    "available": false
   },
   "dependencies": [
     {
@@ -36,50 +36,42 @@
         {
           "symbol": "yaml.load",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         },
         {
           "symbol": "yaml.load_all",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         },
         {
           "symbol": "yaml.full_load",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         },
         {
           "symbol": "yaml.full_load_all",
           "source": "cache",
-          "confidence": "high",
-          "why": "This function is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         },
         {
           "symbol": "yaml.constructor.FullConstructor",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         },
         {
           "symbol": "yaml.constructor.UnsafeConstructor",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         },
         {
           "symbol": "yaml.cyaml.CFullLoader",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         },
         {
           "symbol": "yaml.cyaml.CUnsafeLoader",
           "source": "cache",
-          "confidence": "high",
-          "why": "This class is vulnerable to arbitrary code execution when processing untrusted YAML files."
+          "confidence": "high"
         }
       ],
       "evidence": {
@@ -104,6 +96,8 @@
   "summary": {
     "reachable": 0,
     "not_affected": 0,
-    "uncertain": 1
+    "uncertain": 1,
+    "total": 1,
+    "noise_removed_pct": 0
   }
 }

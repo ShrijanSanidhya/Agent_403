@@ -52,6 +52,8 @@ def render_table(result: ScanResult, console: Console, verbose: bool) -> None:
         f"{counts['reachable']} reachable, {counts['uncertain']} uncertain, "
         f"{counts['not_affected']} not affected"
     )
+    _print_noise(console, counts)
+    _print_fixes(console, result)
     if verbose:
         _print_verbose(console, result)
 
@@ -80,11 +82,39 @@ def dump_json(result: ScanResult, handle: TextIO) -> None:
 
 
 def summary(result: ScanResult) -> dict[str, int]:
-    """Count findings by verdict."""
+    """Count findings by verdict, plus the noise-reduction percentage."""
     counts = {"reachable": 0, "not_affected": 0, "uncertain": 0}
     for finding in result.findings:
         counts[finding.verdict.value] += 1
+    total = len(result.findings)
+    counts["total"] = total
+    if total == 0:
+        counts["noise_removed_pct"] = 0
+    else:
+        counts["noise_removed_pct"] = round(counts["not_affected"] / total * 100)
     return counts
+
+
+def _print_noise(console: Console, counts: dict[str, int]) -> None:
+    total = counts["total"]
+    reachable = counts["reachable"]
+    pct = counts["noise_removed_pct"]
+    console.print(
+        f"📊 {total} advisories found by package-level scanning -> "
+        f"{reachable} actually reachable ({pct}% of alerts need no action)"
+    )
+    if counts["uncertain"] > 0:
+        console.print(f"{counts['uncertain']} need manual review")
+
+
+def _print_fixes(console: Console, result: ScanResult) -> None:
+    for finding in result.findings:
+        if finding.verdict != Verdict.REACHABLE or not finding.advisory.fixed_versions:
+            continue
+        fixed = finding.advisory.fixed_versions[0]
+        package = finding.advisory.package
+        advisory_id = finding.advisory.id
+        console.print(f"🔧 Fix: upgrade {package} to {fixed} or later ({advisory_id})")
 
 
 def _advisory_label(finding: Finding) -> str:
