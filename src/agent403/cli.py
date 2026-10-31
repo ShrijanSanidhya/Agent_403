@@ -1,5 +1,6 @@
 """Command-line interface for agent403."""
 
+import json
 from enum import Enum
 from pathlib import Path
 from typing import Annotated
@@ -7,12 +8,13 @@ from typing import Annotated
 import requests
 import typer
 from rich.console import Console
-from rich.table import Table
 
 from agent403 import __version__
-from agent403.deps import load_dependencies
-from agent403.net import HttpClient, OfflineError
-from agent403.osv import OsvClient
+from agent403.analyzer import ScanResult, analyze
+from agent403.models import Verdict
+from agent403.net import OfflineError
+from agent403.report import dump_json, render_table, to_json
+from agent403.vex import dump_vex
 
 app = typer.Typer(no_args_is_help=True)
 console = Console()
@@ -78,45 +80,73 @@ def scan(
         bool,
         typer.Option("-v", "--verbose", help="Print extra detail."),
     ] = False,
+    site_packages: Annotated[
+        list[Path] | None,
+        typer.Option("--site-packages", help="Read dependency source from this directory."),
+    ] = None,
+    osv_cache: Annotated[
+        list[Path] | None,
+        typer.Option("--osv-cache", help="Extra OSV cache directory."),
+    ] = None,
+    symbols_cache: Annotated[
+        list[Path] | None,
+        typer.Option("--symbols-cache", help="Extra symbols cache file."),
+    ] = None,
 ) -> None:
     """Scan a Python project for reachable vulnerable functions."""
-    del (
-        output_format,
-        json_out,
-        vex_out,
-        no_llm,
-        refresh_symbols,
-        include_tests,
-        fail_on,
-        verbose,
-    )
+    del no_llm, refresh_symbols
     if not path.exists() or not path.is_dir():
         console.print(f"[red]Error:[/red] {path} is not a directory.")
         raise typer.Exit(code=2)
     try:
-        dependencies, warnings = load_dependencies(path, requirements)
-        client = OsvClient(HttpClient(offline=offline), offline=offline)
-        advisories, osv_warnings = client.fetch_advisories(dependencies)
+        result = analyze(
+            path,
+            requirements=requirements,
+            offline=offline,
+            site_dirs=site_packages or [],
+            osv_dirs=osv_cache or [],
+            symbol_files=symbols_cache or [],
+            include_tests=include_tests,
+        )
     except (OfflineError, requests.RequestException, OSError) as exc:
         console.print(f"[red]Error:[/red] {exc}")
         raise typer.Exit(code=2) from None
-    warnings.extend(osv_warnings)
-    table = Table()
-    table.add_column("Package")
-    table.add_column("Version")
-    table.add_column("Advisory")
-    table.add_column("Aliases")
-    table.add_column("Fixed in")
-    for advisory in advisories:
-        table.add_row(
-            advisory.package,
-            advisory.version,
-            advisory.id,
-            ", ".join(advisory.aliases),
-            ", ".join(advisory.fixed_versions),
-        )
-    console.print(table)
-    for warning in warnings:
-        console.print(f"[yellow]Warning:[/yellow] {warning}")
-    console.print("Reachability analysis not implemented yet")
-    raise typer.Exit(code=2)
+    _emit(result, output_format, json_out, vex_out, verbose)
+    raise typer.Exit(code=_exit_code(result, fail_on))
+
+
+def _emit(
+    result: ScanResult,
+    output_format: OutputFormat,
+    json_out: Path | None,
+    vex_out: Path | None,
+    verbose: bool,
+) -> None:
+    if output_format == OutputFormat.json:
+        typer.echo(json.dumps(to_json(result), indent=2))
+        err = Console(stderr=True)
+        for warning in result.warnings:
+            err.print(f"[yellow]Warning:[/yellow] {warning}")
+    else:
+        render_table(result, console, verbose)
+        for warning in result.warnings:
+            console.print(f"[yellow]Warning:[/yellow] {warning}")
+    if json_out is not None:
+        with json_out.open("w", encoding="utf-8") as handle:
+            dump_json(result, handle)
+    if vex_out is not None:
+        with vex_out.open("w", encoding="utf-8") as handle:
+            dump_vex(result, handle)
+
+
+_RANK = {Verdict.REACHABLE: 2, Verdict.UNCERTAIN: 1, Verdict.NOT_AFFECTED: 0}
+
+
+def _exit_code(result: ScanResult, fail_on: FailOn) -> int:
+    if fail_on == FailOn.never:
+        return 0
+    threshold = _RANK[Verdict.REACHABLE if fail_on == FailOn.reachable else Verdict.UNCERTAIN]
+    for finding in result.findings:
+        if _RANK[finding.verdict] >= threshold:
+            return 1
+    return 0
