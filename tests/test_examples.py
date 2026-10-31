@@ -15,6 +15,7 @@ NAMES = [
     "pyyaml_dynamic",
     "jinja2_sandbox",
     "jinja2_plain",
+    "pyyaml_fullloader",
 ]
 
 
