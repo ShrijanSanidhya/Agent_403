@@ -30,7 +30,7 @@ agent403 = "agent403.cli:app"
 where = ["src"]
 
 [tool.setuptools.package-data]
-agent403 = ["data/*"]
+agent403 = ["data/**/*"]
 
 [tool.ruff]
 line-length = 100

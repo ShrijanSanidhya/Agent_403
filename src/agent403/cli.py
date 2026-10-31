@@ -4,10 +4,15 @@ from enum import Enum
 from pathlib import Path
 from typing import Annotated
 
+import requests
 import typer
 from rich.console import Console
+from rich.table import Table
 
 from agent403 import __version__
+from agent403.deps import load_dependencies
+from agent403.net import HttpClient, OfflineError
+from agent403.osv import OsvClient
 
 app = typer.Typer(no_args_is_help=True)
 console = Console()
@@ -76,11 +81,9 @@ def scan(
 ) -> None:
     """Scan a Python project for reachable vulnerable functions."""
     del (
-        requirements,
         output_format,
         json_out,
         vex_out,
-        offline,
         no_llm,
         refresh_symbols,
         include_tests,
@@ -90,5 +93,30 @@ def scan(
     if not path.exists() or not path.is_dir():
         console.print(f"[red]Error:[/red] {path} is not a directory.")
         raise typer.Exit(code=2)
-    console.print("scan pipeline not implemented yet")
+    try:
+        dependencies, warnings = load_dependencies(path, requirements)
+        client = OsvClient(HttpClient(offline=offline), offline=offline)
+        advisories, osv_warnings = client.fetch_advisories(dependencies)
+    except (OfflineError, requests.RequestException, OSError) as exc:
+        console.print(f"[red]Error:[/red] {exc}")
+        raise typer.Exit(code=2) from None
+    warnings.extend(osv_warnings)
+    table = Table()
+    table.add_column("Package")
+    table.add_column("Version")
+    table.add_column("Advisory")
+    table.add_column("Aliases")
+    table.add_column("Fixed in")
+    for advisory in advisories:
+        table.add_row(
+            advisory.package,
+            advisory.version,
+            advisory.id,
+            ", ".join(advisory.aliases),
+            ", ".join(advisory.fixed_versions),
+        )
+    console.print(table)
+    for warning in warnings:
+        console.print(f"[yellow]Warning:[/yellow] {warning}")
+    console.print("Reachability analysis not implemented yet")
     raise typer.Exit(code=2)
