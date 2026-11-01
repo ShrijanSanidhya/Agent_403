@@ -447,6 +447,8 @@ class _Visitor(ast.NodeVisitor):
             self.index.unresolved_calls.append(
                 UnresolvedCall(self.owner, node.func.attr, self.file, node.lineno)
             )
+            # The receiver can itself be a call, e.g. requests.get(url).json().
+            self._visit_chain_base(node.func)
         elif isinstance(node.func, ast.Call):
             self.visit(node.func)
         for arg in node.args:
@@ -463,6 +465,17 @@ class _Visitor(ast.NodeVisitor):
             resolved = self._resolve(node)
             if resolved:
                 self._emit("ref", resolved, node.lineno)
+                return
+        # e.g. requests.get(url).status_code: still visit the inner call.
+        self._visit_chain_base(node)
+
+    def _visit_chain_base(self, node: ast.Attribute) -> None:
+        """Visit the start of an attribute chain when it is not a plain name."""
+        base: ast.expr = node.value
+        while isinstance(base, ast.Attribute):
+            base = base.value
+        if not isinstance(base, ast.Name):
+            self.visit(base)
 
     def visit_Name(self, node: ast.Name) -> None:
         if isinstance(getattr(node, "_agent403_inner", None), bool):
